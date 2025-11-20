@@ -1,0 +1,11 @@
+id,chief_complaint,triage_note,matched_terms,priority_score,predicted_category
+1,Chest pain,"Paciente refiere dolor torácico opresivo desde hace 30 minutos, con sudoración.",dolor torácico opresivo,4,chest_pain
+2,Shortness of breath,"Patient reports shortness of breath at rest, worsening in the last hour.",shortness of breath,3,dyspnea
+3,Fever,Paciente con fiebre de 39.2°C y escalofríos desde anoche.,,0,none
+4,Weakness,"Patient unable to move left arm suddenly, onset 20 minutes ago.",,0,none
+5,Confusion,Paciente presenta confusión aguda y desorientación de inicio reciente.,confusión aguda,4,neuro_deficit
+6,Abdominal pain,"Patient reports abdominal pain for 2 days, no red flags reported.",,0,none
+7,Headache,"Paciente con cefalea intensa, sin otros signos neurológicos.",,0,none
+8,Cough,"Patient with persistent cough for 1 week, afebrile.",,0,none
+9,Low blood pressure,Paciente con presión muy baja y mareos al incorporarse.,presión muy baja,5,shock
+10,Chest discomfort,Patient describes chest discomfort only during exertion.,,0,none
