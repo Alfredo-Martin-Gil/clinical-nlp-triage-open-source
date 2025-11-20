@@ -1,0 +1,11 @@
+term,category,weight,language,note
+"dolor torácico opresivo",chest_pain,4,es,"Suggestive of acute coronary syndrome"
+"dolor en el pecho al esfuerzo",chest_pain,3,es,"Possible stable angina or ischemia"
+"disnea en reposo",dyspnea,4,es,"High-risk respiratory distress"
+"shortness of breath",dyspnea,3,en,"General dyspnea symptom"
+"no mueve un lado del cuerpo",neuro_deficit,5,es,"Possible acute stroke"
+"confusión aguda",neuro_deficit,4,es,"Acute confusion, consider delirium or metabolic emergency"
+"hypotension",shock,5,en,"Possible shock state"
+"presión muy baja",shock,5,es,"Severe hypotension, high-risk"
+"fiebre > 39C",infection,3,es,"Consider severe infection"
+"rigors and fever",infection,3,en,"Systemic infection, sepsis possible"
