@@ -12,27 +12,28 @@ The initial version focuses on extracting symptoms from free-text triage notes (
 ---
 
 ## 🧩 Project Structure
+```text
 clinical-nlp-triage-open-source/
 │
 ├── data/
-│ ├── lexicon_redflags.csv
-│ ├── notes_synthetic.csv
+│   ├── lexicon_redflags.csv
+│   ├── notes_synthetic.csv
 │
 ├── notebooks/
-│ └── triage_rules_baseline.ipynb
+│   └── triage_rules_baseline.ipynb
 │
 ├── src/
-│ └── (future Python modules)
+│   └── (future Python modules)
 │
 ├── outputs/
-│ └── predictions.csv
+│   └── predictions.csv
 │
 ├── docs/
-│ └── clinical_guidelines.md
+│   └── clinical_guidelines.md
 │
 ├── README.md
 └── LICENSE
-
+```
 ---
 
 ## 🎯 Goals (v0.1 Alpha)
