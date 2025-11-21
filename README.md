@@ -29,29 +29,33 @@ The initial versions focus on:
 
 ## 🧩 Project Structure
 
+## 🧩 Project Structure
 
+```text
 clinical-nlp-triage-open-source/
 │
 ├── data/
-│   ├── lexicon_redflags.csv         # Clinical red-flag lexicon (rule-based)
-│   └── notes_synthetic.csv          # Synthetic triage notes (no PHI)
+│   ├── lexicon_redflags.csv
+│   └── notes_synthetic.csv
 │
 ├── notebooks/
-│   └── triage_rules_baseline.ipynb  # Baseline rule-based + lexicon notebook
+│   └── triage_rules_baseline.ipynb
 │
 ├── src/
-│   └── (future Python modules)      # To be populated in later versions
+│   └── (future Python modules)
 │
 ├── outputs/
-│   └── predictions.csv              # Baseline predictions
+│   └── predictions.csv
 │
 ├── docs/
-│   ├── baseline_scoring.md          # Detailed baseline documentation
-│   └── roles.md                     # Team roles (clinical, bioengineering, NLP, etc.)
+│   ├── baseline_scoring.md
+│   └── roles.md
 │
-├── README.md                        # This file
-├── CONTRIBUTING.md                  # Contribution guide
-└── LICENSE                          # Project license (e.g. MIT)
+├── README.md
+├── CONTRIBUTING.md
+└── LICENSE
+```
+
 
 
 
