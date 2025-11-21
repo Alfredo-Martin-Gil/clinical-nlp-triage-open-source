@@ -1,170 +1,181 @@
 # Roles del equipo — clinical-nlp-triage-open-source
 
-Este documento define los roles principales del proyecto y orienta cómo puede contribuir cada perfil. La idea es permitir que personas con distinta formación (médicos, ingenieros, científicos de datos, estudiantes, documentalistas) colaboren de forma ordenada y segura.
+Este documento define los roles principales del proyecto y orienta cómo puede contribuir cada perfil. El objetivo es facilitar la colaboración entre perfiles clínicos, ingeniería biomédica, NLP, ciencia de datos y documentación, trabajando de forma asincrónica y en diferentes zonas horarias.
 
 ---
 
 ## 1. Project Lead (Coordinación general)
 
-**Responsable:** Alfredo (Médico + IA en salud)
+**Responsable:** Alfredo Martin Gil (Médico + IA en salud)
 
 **Responsabilidades principales:**
 - Definir la visión global del proyecto y el roadmap.
-- Priorizar tareas y decidir qué entra en cada versión (v0.1, v0.2…).
+- Priorizar tareas y decidir qué entra en cada versión.
 - Asegurar que las decisiones técnicas respeten los principios de seguridad y ética en salud.
 - Aprobar cambios que afecten a la parte clínica o al objetivo del proyecto.
 
-**Toma de decisiones:**
-- Tiene la última palabra cuando hay conflicto entre velocidad de desarrollo y seguridad clínica.
+**Decisiones:**  
+Tiene la última palabra cuando hay conflicto entre velocidad de desarrollo y seguridad clínica.
 
 ---
 
-## 2. Clinical Lead(s) (Referentes clínicos)
+## 2. Clinical Lead(s)
 
-**Perfil:** médicos/as, enfermería, otros profesionales sanitarios.
+**Perfil:** médicos/as, enfermería, profesionales sanitarios.
 
 **Responsabilidades:**
-- Validar los criterios de red flags y las reglas clínicas.
-- Ayudar a definir el ground truth anotado.
-- Revisar cambios en el lexicon y en las reglas de triage.
-- Señalar riesgos clínicos (infra-detección, sobre-triage, ambigüedad).
+- Validar criterios de red flags y reglas clínicas.
+- Revisar cambios en el lexicon.
+- Ayudar a definir o validar el ground truth anotado.
+- Evaluar riesgos clínicos (infra-detección, sobre-triage, ambigüedad).
 
 **Ejemplos de tareas:**
-- Revisar propuestas de nuevos términos en `lexicon_redflags.csv`.
-- Ayudar a etiquetar ejemplos reales/sintéticos.
-- Proponer ajustes de lógica clínica (prioridades, niveles de urgencia).
+- Evaluar términos del lexicon y su relevancia clínica.
+- Revisar outputs del modelo en ejemplos clínicos simulados.
+- Proponer mejoras en la lógica de triage basada en práctica real.
 
 ---
 
-## 3. NLP / ML Lead
+## 3. Biomedical Engineer / Bioengineer Lead
 
-**Perfil:** persona con experiencia en NLP y modelos de ML.
+**Responsable:** Carina Herrera (Bioingeniera)
+
+**Perfil:** ingenieros/as biomédicos, bioingenieros, perfiles híbridos técnica-clínica.
 
 **Responsabilidades:**
-- Diseñar y revisar los modelos más allá del baseline (embeddings, transformers, etc.).
-- Proponer mejoras del pipeline NLP (tokenización, normalización, manejo de negaciones).
-- Definir estándares de evaluación (métricas, protocolos de validación).
+- Ser puente entre clínica y tecnología.
+- Asegurar la coherencia fisiológica y biomédica del sistema.
+- Participar en el diseño de datasets clínicos (vitals, escalas, parámetros).
+- Evaluar integraciones futuras con señales fisiológicas o dispositivos simples.
+- Revisar estándares biomédicos relevantes (SNOMED-CT, LOINC, etc. si aplica más adelante).
 
 **Ejemplos de tareas:**
-- Añadir un modelo con embeddings (p.ej. ClinicalBERT) para v0.1.1.
+- Ajustar o revisar cómo se representan parámetros fisiológicos.
+- Proponer reglas de seguridad basadas en fisiología.
+- Evaluar si los síntomas y señales están correctamente codificados.
+- Proponer mejoras en la estructura de datos clínicas sintéticas.
+
+---
+
+## 4. Bioengineer Contributors
+
+**Perfil:** colaboradores con formación biomédica o interés en datos clínicos.
+
+**Tareas típicas:**
+- Ayudar en la creación de datasets sintéticos realistas.
+- Validar la coherencia de parámetros fisiológicos.
+- Proponer nuevos ejemplos clínicos de alta utilidad.
+
+---
+
+## 5. NLP / ML Lead
+
+**Perfil:** expertos en PLN o modelos de aprendizaje automático.
+
+**Responsabilidades:**
+- Diseñar modelos más allá del baseline (embeddings, transformers).
+- Proponer y revisar mejoras de tokenización y preprocesamiento.
+- Definir métricas avanzadas y protocolos de evaluación.
+
+**Ejemplos de tareas:**
+- Proponer modelo con embeddings para v0.1.1.
 - Diseñar el módulo de `negation handling`.
-- Proponer nuevas métricas específicas por categoría de red flags.
+- Añadir métricas específicas por categoría de red flags.
 
 ---
 
-## 4. Data Engineer / MLOps
+## 6. Data Engineer / MLOps
 
-**Perfil:** ingeniería de datos, MLOps.
+**Perfil:** ingeniería de datos, DevOps, MLOps.
 
 **Responsabilidades:**
-- Organizar el flujo de datos (datasets, versiones, logs).
-- Ayudar a que el pipeline sea reproducible (scripts, automatización).
-- Preparar, si es necesario, despliegues mínimos (APIs, demos).
+- Mantener pipeline reproducible.
+- Estructurar datasets y versiones.
+- Automatizar procesos si es necesario.
 
 **Ejemplos de tareas:**
-- Mantener scripts de preparación de datos.
+- Limpieza de datos sintéticos.
+- Scripts para regenerar predictions.csv.
 - Configurar entornos (requirements, Docker, etc.).
-- Asegurar que los notebooks se puedan ejecutar sin errores desde cero.
 
 ---
 
-## 5. Contributors de NLP / ML
+## 7. NLP / ML Contributors
 
-**Perfil:** personas con interés en IA aplicada, NLP, estudiantes o investigadores.
+**Perfil:** estudiantes, desarrolladores o investigadores en NLP/ML.
 
 **Responsabilidades:**
-- Implementar mejoras propuestas en issues.
+- Implementar mejoras en tareas definidas en issues.
 - Probar nuevas ideas en ramas separadas.
-- Añadir tests y ejemplos.
-
-**Ejemplos de tareas:**
-- Mejorar el preprocesamiento de texto.
-- Añadir nuevos experimentos de modelos.
-- Documentar resultados en nuevos archivos dentro de `docs/`.
+- Documentar resultados.
 
 ---
 
-## 6. Contributors clínicos (no lead)
+## 8. Clinical Contributors
 
-**Perfil:** médicos/as, enfermería, otros profesionales sanitarios sin carga de coordinación.
+**Perfil:** profesionales sanitarios que no actúan como Lead.
 
 **Responsabilidades:**
-- Proponer ejemplos clínicos realistas (pero anonimizados o sintéticos).
-- Sugerir nuevos red flags o ajustar los existentes.
-- Revisar el comportamiento del sistema en casos clínicos simulados.
-
-**Ejemplos de tareas:**
-- Revisar outputs de `predictions.csv` en casos de prueba.
-- Proponer categorías de triage más ajustadas a la práctica real.
-- Validar textos y etiquetas del ground truth.
+- Proponer ejemplos clínicos sintéticos realistas.
+- Revisar outputs.
+- Sugerir nuevas categorías o ajustar prioridades.
 
 ---
 
-## 7. Documentación y comunicación
+## 9. Documentation & Communication
 
-**Perfil:** personas con buena redacción técnica, interés en explicar y ordenar.
+**Perfil:** personas con buena redacción técnica.
 
 **Responsabilidades:**
-- Mantener la documentación clara y actualizada.
-- Ayudar a escribir y mejorar archivos en `docs/` y el README.
-- Redactar guías breves para nuevos contribuidores.
+- Mantener documentación clara y actualizada.
+- Crear guías breves y documentos de referencia.
+- Ayudar a ordenar la estructura de `docs/`.
 
 **Ejemplos de tareas:**
-- Mejorar `baseline_scoring.md` si cambian las métricas.
-- Crear guías cortas de “cómo empezar” para colaboradores nuevos.
-- Documentar decisiones importantes en un changelog o en issues.
+- Mejorar `baseline_scoring.md`.
+- Redactar guías para nuevos contribuidores.
+- Crear changelogs o resúmenes de versiones.
 
 ---
 
-## 8. Contributors “good first issue”
+## 10. Good First Issue Contributors
 
-**Perfil:** personas que quieren iniciarse en proyectos open-source o en IA en salud.
+**Perfil:** personas nuevas en el proyecto o en IA en salud.
 
 **Responsabilidades:**
-- Empezar por tareas etiquetadas como `good first issue`.
-- Preguntar dudas de forma clara en los issues.
-- Probar el repositorio, detectar errores básicos, proponer mejoras pequeñas.
-
-**Ejemplos de tareas:**
-- Corregir errores menores de documentación.
-- Probar pasos de reproducibilidad y reportar si algo falla.
-- Sugerir ejemplos adicionales para el dataset sintético.
+- Tomar tareas sencillas marcadas como `good first issue`.
+- Reportar reproducibilidad y errores menores.
+- Ayudar a mejorar documentación básica.
 
 ---
 
-## 9. Nivel de compromiso esperado
+## 11. Nivel de compromiso esperado
 
-Dado que este es un proyecto open-source y multidisciplinario:
+Como proyecto open-source:
 
 - No se espera dedicación full-time.
-- Cada rol puede participar según su disponibilidad.
-- Lo importante es:
-  - Comunicar qué se va a hacer.
-  - No romper el baseline sin avisar.
-  - Documentar bien los cambios.
+- Los contribuidores participan según disponibilidad.
+- Se espera comunicación clara, trabajo documentado y evitar romper el baseline sin aviso.
 
 ---
 
-## 10. Cómo asignar y tomar tareas
+## 12. Toma de tareas
 
-- Las tareas se publicarán como **issues** en GitHub.
-- Algunas issues estarán marcadas como:
-  - `clinical`
-  - `NLP`
-  - `data`
-  - `documentation`
-  - `good first issue`
-- Cualquier persona puede:
-  - Comentar en una issue y decir: “Me gustaría trabajar en esto”.
-  - Hacer un fork o una branch y luego abrir un Pull Request (PR).
+- Las tareas se publican en **Issues**.
+- Cada persona puede comentar:  
+  > "Me gustaría trabajar en esta tarea."
+- Se crea rama (`feature/...`) y luego un Pull Request.
 
 ---
 
-## 11. Escalado de dudas y decisiones
+## 13. Escalado de dudas
 
-- Dudas clínicas graves → consultar a Clinical Lead / Project Lead.
-- Dudas técnicas complejas (modelos, embeddings) → NLP / ML Lead.
-- Dudas de flujo de trabajo o organización → Project Lead.
+- Dudas clínicas → Clinical Lead / Project Lead.  
+- Dudas biomédicas → Bioengineer Lead.  
+- Dudas técnicas → NLP/ML Lead o Data Engineer.  
+- Organización general → Project Lead.
+
+---
 
 El objetivo es que nadie se quede bloqueado en silencio: es mejor preguntar temprano que corregir tarde en un proyecto de salud.
 
