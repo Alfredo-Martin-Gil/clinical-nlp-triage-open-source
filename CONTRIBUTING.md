@@ -1,7 +1,7 @@
 # Guía de contribución — clinical-nlp-triage-open-source
 
 ¡Gracias por tu interés en colaborar con **clinical-nlp-triage-open-source**!  
-Este proyecto explora cómo el NLP clínico puede apoyar el triaje y la orientación inicial de pacientes en contextos con baja disponibilidad médica, siempre desde una perspectiva de **IA segura, responsable y abierta**.
+Este proyecto explora cómo el NLP clínico puede ayudar al triaje y orientación inicial en contextos con baja disponibilidad médica, siempre desde una perspectiva de **IA segura, responsable y abierta**.
 
 Este documento explica cómo contribuir de forma ordenada, segura y útil para el equipo.
 
@@ -9,247 +9,206 @@ Este documento explica cómo contribuir de forma ordenada, segura y útil para e
 
 ## 1. Principios del proyecto
 
-Antes de contribuir, tené en cuenta que este proyecto:
-
-- **No es un producto asistencial**, ni está destinado a uso clínico directo.
-- Es un entorno de experimentación y aprendizaje en IA aplicada a salud.
-- Da prioridad a:
-  - Seguridad y ética sobre velocidad.
-  - Transparencia y reproducibilidad.
-  - Trabajo multidisciplinario (clínica + NLP + datos + documentación).
-
-Si en algún momento tenés dudas sobre el impacto clínico o la seguridad de una propuesta, **preguntá antes de implementar**.
+- Este no es un proyecto asistencial ni debe usarse para decisiones clínicas reales.
+- La seguridad y ética están por encima de la velocidad de desarrollo.
+- La reproducibilidad y la transparencia son fundamentales.
+- La colaboración multidisciplinaria (clínica + bioingeniería + NLP + datos + documentación) es el núcleo del proyecto.
 
 ---
 
 ## 2. Roles y responsabilidades
 
-Los roles del equipo se describen en detalle en:
+Los roles se encuentran descritos en detalle en:
 
 - `docs/roles.md`
 
-Ahí vas a encontrar:
+Incluyen:
 
-- **Project Lead** (coordinación general).
-- **Clinical Lead(s)** (referentes clínicos).
-- **NLP / ML Lead**.
-- **Data Engineer / MLOps**.
-- **Contributors clínicos, técnicos y de documentación**.
-- Issues marcadas como `good first issue` para quienes empiezan.
+- Project Lead  
+- Clinical Lead(s)  
+- **Bioengineer Lead**  
+- **Bioengineer Contributors**  
+- NLP / ML Lead  
+- Data Engineer / MLOps  
+- NLP/ML Contributors  
+- Clinical Contributors  
+- Documentation & Communication  
+- Good First Issue Contributors  
 
-Te recomendamos leer ese archivo antes de elegir una tarea.
+Cada contribuyente debe revisar este documento antes de asumir una tarea.
 
 ---
 
 ## 3. Tipos de contribuciones bienvenidas
 
-Podés contribuir de muchas maneras:
+### 🧠 Clínica
+- Validación de red flags.
+- Revisión de casos sintéticos.
+- Propuesta de reglas de triaje basadas en práctica real.
 
-- 🧠 **Clínica**
-  - Proponer nuevos red flags o ajustar los existentes.
-  - Revisar ejemplos clínicos sintéticos.
-  - Ayudar a definir criterios de triaje.
+### 🧬 Bioingeniería
+*(Nuevo rol incorporado)*
 
-- 🤖 **NLP / ML**
-  - Mejorar el preprocesamiento.
-  - Proponer modelos nuevos (embeddings, transformers, etc.).
-  - Diseñar y evaluar métricas adicionales.
+- Validación de parámetros fisiológicos (SpO₂, FC, FR, PA, temperatura).
+- Diseño o revisión de datasets clínicos sintéticos.
+- Sugerencias basadas en fisiología, biometría o señales.
+- Evaluación de coherencia biomédica en reglas de triaje.
+- Revisión de terminología o estándares biomédicos (SNOMED, LOINC… si aplica).
 
-- 🗂️ **Datos**
-  - Mejorar la estructura de los datasets sintéticos.
-  - Proponer nuevos escenarios clínicos.
-  - Ayudar con scripts de preparación de datos.
+### 🤖 NLP / ML
+- Mejoras en tokenización, embeddings, modelos, negation handling.
+- Experimentación con modelos nuevos.
+- Análisis de errores y métricas.
 
-- 📝 **Documentación**
-  - Mejorar `README.md`, `docs/baseline_scoring.md`, `docs/roles.md`.
-  - Crear guías para nuevos contribuidores.
-  - Documentar experimentos.
+### 🗂️ Datos
+- Mejora de estructuras de datasets.
+- Generación de nuevos ejemplos sintéticos.
+- Limpieza y preprocesamiento.
 
-- 🧪 **Testing y validación**
-  - Probar reproducibilidad del baseline.
-  - Revisar outputs de `predictions.csv`.
-  - Detectar problemas de seguridad o ambigüedad clínica.
+### 📝 Documentación
+- Mejorar `README.md`, `baseline_scoring.md`, `roles.md`.
+- Crear guías para nuevos colaboradores.
+- Documentar experimentos o cambios importantes.
 
 ---
 
 ## 4. Flujo de trabajo recomendado
 
-### 4.1. Buscar una tarea
-
-1. Ir a la pestaña **Issues** del repositorio.
-2. Buscar issues etiquetadas como:
+### 4.1. Elegir una tarea
+1. Ir a la pestaña **Issues**.
+2. Buscar etiquetas como:  
+   - `clinical`  
+   - `bioengineering`  
+   - `NLP`  
+   - `data`  
+   - `documentation`  
    - `good first issue`
-   - `clinical`
-   - `NLP`
-   - `data`
-   - `documentation`
-3. Comentá en la issue:  
-   > “Me gustaría trabajar en esta tarea. ¿Puedo tomarla?”
+3. Comentar:  
+   > "Quiero trabajar en esta issue. ¿Puedo tomarla?"
 
-### 4.2. Crear rama o fork
-
-Si tenés permisos de escritura:
-
-- Crear una rama desde `main`:
-  - `feature/nombre-corto`
-  - `fix/bug-descripcion`
-  - `doc/actualizacion-baseline`
+### 4.2. Crear una rama o fork
+Si tenés permisos:
+- Crear rama desde `main`:  
+  - `feature/nombre-corto`  
+  - `bioeng/parametros-fisiologicos`  
+  - `clinical/redflags-chest-pain`  
+  - `nlp/embeddings-v0-1-1`
 
 Si no tenés permisos:
+- Crear un fork del repositorio.
 
-- Hacer un **fork** del repositorio.
-- Trabajar en una rama en tu fork.
-- Abrir un **Pull Request (PR)** hacia `main`.
-
-### 4.3. Hacer cambios
-
-Recomendaciones:
-
-- Mantener los cambios **enfocados** en una sola cosa por PR.
-- Acompañar los cambios de:
-  - Comentarios claros en el código si hace falta.
-  - Actualización de documentación si se modifica comportamiento.
-  - Notas en la issue correspondiente.
+### 4.3. Hacer los cambios
+- Mantener cambios enfocados en una sola tarea.
+- Documentar decisiones importantes.
+- Actualizar documentación si el comportamiento cambia.
 
 ### 4.4. Abrir un Pull Request
-
-Al abrir un PR:
-
-- Referenciar la issue relacionada:  
-  > “Closes #12” o “Relates to #8”.
-- Explicar brevemente:
-  - Qué se cambia.
-  - Por qué se cambia.
-  - Cómo se probó.
-- Si el PR afecta lógica clínica o red flags, marcarlo claramente en la descripción.
+- Referenciar la issue:  
+  > “Closes #12”
+- Explicar:  
+  - Qué se hizo  
+  - Por qué  
+  - Cómo se probó  
+- Si afecta lógica clínica o biomédica, marcarlo explícitamente.
 
 ---
 
 ## 5. Estándares de código y estilo
 
-### 5.1. Lenguaje y versión
-
+### Lenguaje
 - Python 3.10+
-- Evitar dependencias innecesarias.
 
-### 5.2. Estilo
+### Estilo
+- PEP8
+- Variables descriptivas
+- Comentarios solo si aportan contexto
 
-- Seguir **PEP8**.
-- Nombres de variables descriptivos.
-- Funciones y módulos con nombres claros.
-- Comentarios solo cuando aportan contexto útil.
-
-### 5.3. Estructura esperada
-
-- Datasets en: `data/`
-- Notebooks en: `notebooks/`
-- Scripts en: `src/`
-- Documentación técnica en: `docs/`
-
-Si no estás seguro de dónde ubicar algo, preguntá en la issue.
+### Ubicación de archivos
+- `data/` → datasets  
+- `notebooks/` → notebooks  
+- `src/` → scripts  
+- `docs/` → documentación técnica  
 
 ---
 
-## 6. Cambios clínicos y de seguridad
+## 6. Cambios clínicos y biomédicos
 
-Esta parte es crítica.
+### 6.1. Cambios clínicos
+Todo cambio que afecte reglas clínicas o red flags requiere:
+- Issue previa  
+- Revisión por Clinical Lead o Project Lead  
 
-### 6.1. Cambios en el lexicon de red flags
+### 6.2. Cambios biomédicos
+Todo cambio que afecte parámetros fisiológicos, estructura de datos clínicos, criterios basados en fisiología o dispositivos requiere:
 
-- Todo cambio en `lexicon_redflags.csv` debe ser:
-  - Justificado en la issue.
-  - Revisado por al menos un **Clinical Lead** o el **Project Lead**.
+- Issue bajo etiqueta: `bioengineering`
+- Revisión del Bioengineer Lead
+- Justificación fisiológica o biomédica clara
 
-### 6.2. Cambios en reglas de triage
-
-- Cambios en la lógica que determina la prioridad del paciente **no** deben ser introducidos sin:
-  - Discusión previa en una issue.
-  - Revisión clínica explícita.
-
-### 6.3. Advertencia
-
-El sistema:
-
-- **No está autorizado para uso asistencial.**
-- No reemplaza el juicio clínico.
-- No debe utilizarse para tomar decisiones sobre pacientes reales.
+### 6.3. Cambios en el lexicon de red flags
+Debe ser revisado por:
+- Clinical Lead  
+- O Bioengineer Lead (si aplica parámetros o fisiología)
 
 ---
 
 ## 7. Reproducibilidad del baseline
 
-Si tu contribución afecta al baseline, verificá:
+Antes de realizar un PR que afecte el baseline:
 
-1. Que seguís los pasos de `docs/baseline_scoring.md`.
-2. Que se puede regenerar `predictions.csv` sin errores.
-3. Que las métricas se mantienen o mejoran.
-4. Que cualquier cambio relevante quede documentado.
-
-Si los resultados cambian, añadiendo o modificando:
-
-- Explicar por qué.
-- Actualizar documentación si procede.
+1. Confirmar que el notebook se ejecuta sin errores.
+2. Regenerar `predictions.csv`.
+3. Verificar que las métricas se mantienen o mejoran.
+4. Actualizar documentación si cambian resultados.
 
 ---
 
-## 8. Reporte de bugs y problemas
+## 8. Reporte de bugs
 
-Si encontrás un problema:
+Crear una issue con:
+- Descripción clara del error  
+- Pasos para reproducir  
+- Versión de Python  
+- Archivos involucrados  
 
-1. Crear una **issue** con:
-   - Descripción clara del bug.
-   - Pasos para reproducirlo.
-   - Entorno (versión de Python, sistema operativo si es relevante).
-2. Etiquetarlo, si es posible:
-   - `bug`
-   - `documentation`
-   - `clinical`
-   - `NLP`
+Etiquetar si es posible:
+- `bug`
+- `clinical`
+- `bioengineering`
+- `NLP`
+- `documentation`
 
 ---
 
-## 9. Propuestas de nuevas funcionalidades
+## 9. Nuevas funcionalidades
 
-Si tenés una idea nueva:
+Abrir issue tipo `enhancement` o `feature request`.
 
-1. Crear una issue de tipo `enhancement` o `feature request`.
-2. Responder brevemente:
-   - ¿Qué problema resuelve?
-   - ¿Es clínico, técnico o ambos?
-   - ¿Hay riesgos clínicos asociados?
-
-No te preocupes si tu propuesta no está totalmente madura: mejor discutirla temprano que implementar algo que luego haya que revertir.
+Explicar:
+- Qué problema resuelve  
+- Riesgos clínicos o biomédicos  
+- Impacto en triaje o seguridad  
+- Cambios que implica en datos o lógica  
 
 ---
 
 ## 10. Código de conducta (resumen)
 
-Aunque no haya un archivo formal de código de conducta aún, este proyecto se guía por principios básicos:
-
-- Respeto entre participantes.
-- Comunicación clara y honesta.
-- No tolerancia a ataques personales, discriminación o acoso.
-- Reconocimiento del trabajo ajeno.
-
-Si hay conflictos, el **Project Lead** puede intervenir para mediar.
+- Respeto entre colaboradores.  
+- Comunicación clara y sin tecnicismos innecesarios.  
+- No se tolera discriminación ni ataques personales.  
+- El Project Lead puede intervenir para mediar conflictos.
 
 ---
 
 ## 11. Preguntas y soporte
 
-Si tenés dudas sobre:
+Si tenés dudas:
+- Comentar en una Issue  
+- Abrir Issue con etiqueta `question`  
 
-- Cómo empezar.
-- Qué tarea elegir.
-- Cómo estructurar un PR.
-- Cualquier aspecto clínico o técnico.
-
-Podés:
-
-- Comentar en una issue existente.
-- Abrir una nueva issue con etiqueta `question`.
 
 ---
 
-Gracias por interesarte en este proyecto de IA en salud.  
+¡Gracias por formar parte de este proyecto de IA en salud! 
 Cada contribución, por pequeña que parezca, ayuda a construir herramientas más transparentes, seguras y útiles para la comunidad.
