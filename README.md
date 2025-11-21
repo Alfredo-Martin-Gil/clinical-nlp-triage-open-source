@@ -29,7 +29,7 @@ The initial versions focus on:
 
 ## 🧩 Project Structure
 
-```text
+
 clinical-nlp-triage-open-source/
 │
 ├── data/
@@ -52,6 +52,9 @@ clinical-nlp-triage-open-source/
 ├── README.md                        # This file
 ├── CONTRIBUTING.md                  # Contribution guide
 └── LICENSE                          # Project license (e.g. MIT)
+
+
+
 🎯 Goals (v0.1-alpha)
 v0.1-alpha is focused on a simple but fully documented baseline:
 
