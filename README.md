@@ -6,6 +6,17 @@ Open-source prototype of a rule-based and NLP-assisted triage system for emergen
 > This project is an experimental research/prototype environment.  
 > It is **not a medical device**, has **no regulatory approval**, and **must not be used** to make decisions about real patients.
 
+## 🧭 Clinical Origin & Ethical Foundation
+
+This project is grounded in real-world emergency and prehospital clinical practice.
+
+For a detailed explanation of the clinical motivation, problem framing, and ethical positioning behind this initiative, see:
+
+➡️ **[Clinical Origin of the Project](docs/clinical_origin.md)**
+
+This document describes *why* this project exists, the role of uncertainty and cognitive overload in triage, and the principles that guide its development.
+
+
 ## 🧠 Problem Statement
 
 In emergency and prehospital settings, clinical decisions are frequently made under conditions of:
