@@ -6,6 +6,46 @@ Open-source prototype of a rule-based and NLP-assisted triage system for emergen
 > This project is an experimental research/prototype environment.  
 > It is **not a medical device**, has **no regulatory approval**, and **must not be used** to make decisions about real patients.
 
+## 🧠 Problem Statement
+
+In emergency and prehospital settings, clinical decisions are frequently made under conditions of:
+
+- incomplete or ambiguous information,
+- high cognitive load,
+- time pressure,
+- and, in many contexts, limited or absent access to experienced clinicians.
+
+In these environments, the primary risk is not a lack of medical knowledge, but **decision-making under uncertainty**.
+
+This project originates from real-world clinical practice, where triage often relies on brief, unstructured notes, subjective descriptions, and early symptom narratives that may hide critical red flags.
+
+## 🚑 Clinical Context
+
+This project is grounded in real emergency and prehospital medicine workflows, including:
+
+- ambulance and out-of-hospital care,
+- emergency department triage,
+- low-resource or understaffed settings,
+- early patient contact before full diagnostic data is available.
+
+The system is designed to explore how structured rules and NLP techniques can help **reduce cognitive overload**, surface potential red flags early, and support — not replace — clinical judgment.
+
+## ⚖️ Project Philosophy
+
+### What this project IS
+- A research and educational prototype.
+- A clinical decision-support exploration tool.
+- A transparent, explainable baseline for triage reasoning.
+- A multidisciplinary collaboration between clinicians, bioengineers and AI practitioners.
+
+### What this project is NOT
+- ❌ Not a medical device.
+- ❌ Not a diagnostic system.
+- ❌ Not an autonomous decision-maker.
+- ❌ Not intended for real patient care.
+
+The goal is to **augment human decision-making**, especially in environments where uncertainty and cognitive overload increase the risk of preventable harm.
+
 ---
 
 ## 🚑 Overview
