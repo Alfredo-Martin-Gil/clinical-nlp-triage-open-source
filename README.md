@@ -18,70 +18,25 @@ This document describes *why* this project exists, the role of uncertainty and c
 
 ## Clinical Reasoning and Guideline Alignment
 
-This project is grounded in internationally accepted principles of clinical risk stratification and triage.  
-It does **not** aim to diagnose conditions or replace clinician judgment, but to support **early risk awareness and prioritization** in emergency and prehospital settings.
+This project follows internationally accepted principles of **risk-based triage** and early clinical **risk stratification** in emergency and prehospital settings.
 
-### Scope and methodological positioning
-The triage logic implemented and evaluated in this project focuses on:
-- Early identification of **high-risk clinical features**
-- Reduction of **cognitive load** under time pressure
-- Support for **decision-making in uncertain contexts**, particularly in prehospital or low-resource environments
+### What this project does (and does not) do
+- It supports **early risk awareness and prioritization** under uncertainty.
+- It does **not** provide diagnoses, replace clinician judgment, or make autonomous decisions.
+- Triage priority ≠ diagnosis; decision support ≠ autonomous decision-making.
 
-This approach deliberately precedes definitive diagnosis or advanced treatment algorithms.
+### Alignment with validated international frameworks
+The approach is conceptually aligned with:
+- Guideline-based **early risk stratification** (condition-specific, published by international societies).
+- International triage systems where **high-risk features override transient stability**, including **ESI**, **CTAS**, and **MTS**.
 
----
+### Relation to ACLS / advanced life support
+ACLS algorithms are not implemented here because they apply to cardiac arrest, life-threatening arrhythmias, or established instability.  
+This project operates **upstream of ACLS**, at the triage and early assessment phase, and does not interfere with ALS activation when deterioration occurs.
 
-### Alignment with international clinical guidelines
-
-The clinical reasoning underlying this project is conceptually aligned with the following validated international guidelines and frameworks:
-
-#### Syncope and transient loss of consciousness
-- **European Society of Cardiology (ESC)**  
-  *2018 ESC Guidelines for the diagnosis and management of syncope*  
-  These guidelines emphasize early risk stratification based on age, prodromal features, comorbidities, and clinical context.  
-  High-risk features warrant urgent evaluation even in initially stable patients.
-
-- **American College of Emergency Physicians (ACEP)**  
-  *Clinical Policy for the Evaluation of Syncope in the Emergency Department*  
-  ACEP highlights the importance of prioritizing sensitivity over specificity during initial assessment, recognizing that short-term stability does not exclude serious underlying pathology.
-
-- **Canadian Syncope Risk Score (CSRS)**  
-  While not implemented as a rigid scoring system, the project follows the same conceptual framework:
-  age, clinical context, risk factors, and presentation guide triage priority rather than definitive diagnosis.
-
-- **NICE Guidelines (UK)**  
-  *Transient loss of consciousness (TLoC)*  
-  NICE guidance reinforces that early triage decisions should identify patients who cannot be safely managed without urgent in-hospital assessment.
-
----
-
-### Relation to ACLS and advanced life support algorithms
-Advanced Cardiac Life Support (ACLS) algorithms are **not directly applied** within this project, as ACLS is designed for the management of:
-- Cardiac arrest
-- Life-threatening arrhythmias
-- Established hemodynamic instability
-
-This project operates **upstream of ACLS**, at the triage and early assessment phase.  
-Importantly, it does not delay or interfere with ACLS activation when clinical deterioration occurs.
-
----
-
-### Triage frameworks and urgency classification
-The prioritization logic is consistent with internationally used triage systems, including:
-- **Emergency Severity Index (ESI)**
-- **Canadian Triage and Acuity Scale (CTAS)**
-- **Manchester Triage System (MTS)**
-
-In these systems, the presence of high-risk features overrides transient stability and justifies elevated priority levels.
-
----
-
-### Ethical and clinical principles
-- Triage priority ≠ diagnosis  
-- Decision support ≠ autonomous decision-making  
-- Final responsibility always remains with a qualified healthcare professional
-
-The system is designed to reduce avoidable harm by supporting clinicians during early, high-uncertainty phases of care.
+### Where condition-specific detail lives
+Condition-specific guideline notes (e.g., syncope, chest pain, dyspnea, stroke, sepsis, trauma) are maintained under:
+`docs/clinical_entities/`
 
 
 ## 🧠 Problem Statement
