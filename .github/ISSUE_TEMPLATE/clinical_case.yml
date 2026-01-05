@@ -1,0 +1,25 @@
+name: Clinical case (anonymized)
+description: Submit an anonymized clinical case to evaluate the triage workflow.
+title: "[Clinical Case]: "
+labels: ["clinical", "triage"]
+body:
+  - type: textarea
+    attributes:
+      label: Clinical context
+      description: Setting, age range, chief complaint, brief history. No identifiers.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Red flags
+      description: Any red flags present or suspected.
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: Expected triage priority
+      description: Clinical expectation (urgency level and rationale).
+    validations:
+      required: true
