@@ -26,6 +26,21 @@ Open-source prototype of a rule-based and NLP-assisted triage system for emergen
 
 ---
 
+## 🔎 Related Conceptual Work
+
+This project is part of a broader exploration of **clinical decision-making under uncertainty**
+in prehospital care.
+
+A detailed operational description of how real-world decisions are made — without algorithms
+or models — is documented here:
+
+👉 **[prehospital-clinical-decision-uncertainty](https://github.com/Alfredo-Martin-Gil/prehospital-clinical-decision-uncertainty)**
+
+That repository provides the clinical reasoning context that informs this implementation,
+but contains **no code and no decision automation**.
+
+---
+
 ## 🧭 Clinical Origin & Ethical Foundation
 
 This project is grounded in real-world emergency and prehospital clinical practice.
@@ -158,6 +173,7 @@ clinical-nlp-triage-open-source/
 ├── README.md
 ├── CONTRIBUTING.md
 └── LICENSE
+
 
 
 
