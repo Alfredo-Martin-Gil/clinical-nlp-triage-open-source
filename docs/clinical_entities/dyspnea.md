@@ -45,3 +45,11 @@ Identify patients with shortness of breath who may have a life-threatening respi
 
 ## Notes
 This is a triage-oriented reference for research purposes only.
+
+## Structured Red Flags (canonical)
+- severe_respiratory_distress
+- low_oxygen_saturation
+- cyanosis
+- altered_mental_status_with_dyspnea
+- chest_pain_with_dyspnea
+
