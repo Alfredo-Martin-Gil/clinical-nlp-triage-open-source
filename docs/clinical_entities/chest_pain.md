@@ -47,3 +47,12 @@ Identify patients with chest pain who may have a life-threatening cardiovascular
 
 ## Notes
 Focus is triage risk, not diagnosis. This is a research-oriented reference only.
+
+## Structured Red Flags (canonical)
+- ongoing_chest_pain
+- chest_pain_radiation
+- chest_pain_with_dyspnea
+- chest_pain_with_syncope
+- diaphoresis_with_chest_pain
+- hemodynamic_instability
+
