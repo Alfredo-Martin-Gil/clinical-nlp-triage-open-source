@@ -1,11 +1,36 @@
-id,chief_complaint,triage_note,label_demo,main_category
-1,"Chest pain","Paciente refiere dolor torácico opresivo desde hace 30 minutos, con sudoración.","urgent","chest_pain"
-2,"Shortness of breath","Patient reports shortness of breath at rest, worsening in the last hour.","urgent","dyspnea"
-3,"Fever","Paciente con fiebre de 39.2°C y escalofríos desde anoche.","non_urgent","infection"
-4,"Weakness","Patient unable to move left arm suddenly, onset 20 minutes ago.","urgent","neuro_deficit"
-5,"Confusion","Paciente presenta confusión aguda y desorientación de inicio reciente.","urgent","neuro_deficit"
-6,"Abdominal pain","Patient reports abdominal pain for 2 days, no red flags reported.","non_urgent","abdominal"
-7,"Headache","Paciente con cefalea intensa, sin otros signos neurológicos.","non_urgent","neuro"
-8,"Cough","Patient with persistent cough for 1 week, afebrile.","non_urgent","respiratory"
-9,"Low blood pressure","Paciente con presión muy baja y mareos al incorporarse.","urgent","shock"
-10,"Chest discomfort","Patient describes chest discomfort only during exertion.","urgent","chest_pain"
+id,text,entity,label
+1,Patient collapsed while walking upstairs,syncope,high
+2,Brief faint with palpitations before event,syncope,high
+3,Fainted after standing up quickly,syncope,low
+4,Unwitnessed syncope no warning signs,syncope,high
+5,Lightheaded then passed out recovered fully,syncope,intermediate
+
+6,Ongoing central chest pain radiating to left arm,chest_pain,high
+7,Chest pain with shortness of breath,chest_pain,high
+8,Sharp chest pain worse with movement,chest_pain,low
+9,Chest discomfort with sweating,chest_pain,high
+10,Mild chest pain after exercise resolved,chest_pain,intermediate
+
+11,Severe shortness of breath and cyanosis,dyspnea,high
+12,Shortness of breath with chest pain,dyspnea,high
+13,Mild dyspnea with cough,dyspnea,intermediate
+14,Unable to speak full sentences,dyspnea,high
+15,Shortness of breath when anxious,dyspnea,low
+
+16,Confused febrile patient,sepsis,high
+17,Low blood pressure and fever,sepsis,high
+18,Urinary symptoms with fever,sepsis,intermediate
+19,Localized skin infection,sepsis,low
+20,Weakness and chills,sepsis,intermediate
+
+21,Severe diffuse abdominal pain,abdominal_pain,high
+22,Abdominal pain with persistent vomiting,abdominal_pain,high
+23,Mild abdominal discomfort,abdominal_pain,low
+24,Abdominal pain with fever,abdominal_pain,intermediate
+25,Abdominal pain and syncope,abdominal_pain,high
+
+26,Sudden right arm weakness,stroke,high
+27,Facial droop and slurred speech,stroke,high
+28,Severe headache with confusion,stroke,high
+29,Brief dizziness resolved,stroke,low
+30,Vision loss in one eye,stroke,intermediate
