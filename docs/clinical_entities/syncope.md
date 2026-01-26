@@ -45,3 +45,13 @@ Identify patients with transient loss of consciousness who may have a high risk 
 ## Notes
 Conceptual alignment with international guidance (ESC syncope guideline, ACEP clinical policy, NICE TLoC, Canadian Syncope Risk Score).  
 This document is for research triage reasoning only and not for real patient care.
+
+## Structured Red Flags (canonical)
+- syncope_exertion
+- syncope_no_prodrome
+- palpitations_before_syncope
+- abnormal_vital_signs
+- persistent_altered_mental_status
+- chest_pain_with_syncope
+- focal_neurological_deficit
+
