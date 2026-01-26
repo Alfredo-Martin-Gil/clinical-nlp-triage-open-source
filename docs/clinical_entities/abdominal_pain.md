@@ -44,3 +44,11 @@ Identify patients with abdominal pain who may have a surgical or life-threatenin
 
 ## Notes
 Focus is early identification of potentially serious causes. Research triage reference only.
+
+## Structured Red Flags (canonical)
+- severe_abdominal_pain
+- peritonism
+- persistent_vomiting
+- fever_with_abdominal_pain
+- syncope_with_abdominal_pain
+
