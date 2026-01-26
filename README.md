@@ -26,6 +26,18 @@ Open-source prototype of a rule-based and NLP-assisted triage system for emergen
 
 ---
 
+## Project Status
+
+Early-stage clinical knowledge structuring.
+
+This repository currently focuses on externalizing and organizing clinical reasoning for triage and early risk detection.
+
+There is no executable triage system yet.
+
+No clinical decision support engine is implemented at this stage.
+
+---
+
 ## 🔎 Related Conceptual Work
 
 This project is part of a broader exploration of **clinical decision-making under uncertainty**
