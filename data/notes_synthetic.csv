@@ -4,33 +4,123 @@ id,text,entity,label
 3,Fainted after standing up quickly,syncope,low
 4,Unwitnessed syncope no warning signs,syncope,high
 5,Lightheaded then passed out recovered fully,syncope,intermediate
+6,Exertional syncope while jogging,syncope,high
+7,Syncope with chest pain,syncope,high
+8,Syncope with abnormal vital signs,syncope,high
+9,Brief faint with prodrome,syncope,low
+10,Recurrent syncope elderly patient,syncope,intermediate
+11,Syncope and confusion,syncope,high
+12,Near syncope after dehydration,syncope,low
+13,Syncope with palpitations,syncope,high
+14,Syncope after prolonged standing,syncope,low
+15,Syncope with focal weakness,syncope,high
+16,Syncope with dyspnea,syncope,high
+17,Syncope in heart failure patient,syncope,intermediate
+18,Single faint full recovery,syncope,low
+19,Syncope with hypotension,syncope,high
+20,Syncope without prodrome,syncope,high
 
-6,Ongoing central chest pain radiating to left arm,chest_pain,high
-7,Chest pain with shortness of breath,chest_pain,high
-8,Sharp chest pain worse with movement,chest_pain,low
-9,Chest discomfort with sweating,chest_pain,high
-10,Mild chest pain after exercise resolved,chest_pain,intermediate
+21,Ongoing central chest pain radiating to left arm,chest_pain,high
+22,Chest pain with shortness of breath,chest_pain,high
+23,Sharp chest pain worse with movement,chest_pain,low
+24,Chest discomfort with sweating,chest_pain,high
+25,Mild chest pain after exercise resolved,chest_pain,intermediate
+26,Crushing chest pain,chest_pain,high
+27,Chest pain with syncope,chest_pain,high
+28,Chest tightness diabetic patient,chest_pain,intermediate
+29,Brief stabbing chest pain,chest_pain,low
+30,Chest pain radiating to jaw,chest_pain,high
+31,Chest pain and diaphoresis,chest_pain,high
+32,Chest pain smoker,chest_pain,intermediate
+33,Chest pain reproducible on palpation,chest_pain,low
+34,Chest pain with hypotension,chest_pain,high
+35,Burning epigastric pain,chest_pain,low
+36,Chest pain with dyspnea,chest_pain,high
+37,Chest heaviness,chest_pain,intermediate
+38,Brief chest discomfort,chest_pain,low
+39,Chest pain at rest,chest_pain,high
+40,Chest pain hypertensive patient,chest_pain,intermediate
 
-11,Severe shortness of breath and cyanosis,dyspnea,high
-12,Shortness of breath with chest pain,dyspnea,high
-13,Mild dyspnea with cough,dyspnea,intermediate
-14,Unable to speak full sentences,dyspnea,high
-15,Shortness of breath when anxious,dyspnea,low
+41,Severe shortness of breath and cyanosis,dyspnea,high
+42,Shortness of breath with chest pain,dyspnea,high
+43,Mild dyspnea with cough,dyspnea,intermediate
+44,Unable to speak full sentences,dyspnea,high
+45,Shortness of breath when anxious,dyspnea,low
+46,Acute dyspnea,dyspnea,intermediate
+47,Dyspnea with wheezing,dyspnea,intermediate
+48,Dyspnea with cyanosis,dyspnea,high
+49,Dyspnea in COPD patient,dyspnea,intermediate
+50,Severe respiratory distress,dyspnea,high
+51,Mild exertional dyspnea,dyspnea,low
+52,Dyspnea and confusion,dyspnea,high
+53,Dyspnea with fever,dyspnea,intermediate
+54,Sudden dyspnea,dyspnea,intermediate
+55,Dyspnea lying flat,dyspnea,intermediate
+56,Dyspnea with chest tightness,dyspnea,high
+57,Mild breathlessness,dyspnea,low
+58,Dyspnea with hypotension,dyspnea,high
+59,Dyspnea smoker,dyspnea,intermediate
+60,Dyspnea after exercise,dyspnea,low
 
-16,Confused febrile patient,sepsis,high
-17,Low blood pressure and fever,sepsis,high
-18,Urinary symptoms with fever,sepsis,intermediate
-19,Localized skin infection,sepsis,low
-20,Weakness and chills,sepsis,intermediate
+61,Confused febrile patient,sepsis,high
+62,Low blood pressure and fever,sepsis,high
+63,Urinary symptoms with fever,sepsis,intermediate
+64,Localized skin infection,sepsis,low
+65,Weakness and chills,sepsis,intermediate
+66,Altered mental status,sepsis,high
+67,Tachypnea and fever,sepsis,high
+68,Cold mottled skin,sepsis,high
+69,High fever,sepsis,intermediate
+70,Mild cellulitis,sepsis,low
+71,Sepsis in elderly,sepsis,high
+72,Fever and hypotension,sepsis,high
+73,Flank pain with fever,sepsis,intermediate
+74,Productive cough and fever,sepsis,intermediate
+75,Chills and rigors,sepsis,intermediate
+76,Confusion and hypotension,sepsis,high
+77,Mild viral symptoms,sepsis,low
+78,Fever diabetic patient,sepsis,intermediate
+79,Severe weakness,sepsis,intermediate
+80,Normal vitals mild fever,sepsis,low
 
-21,Severe diffuse abdominal pain,abdominal_pain,high
-22,Abdominal pain with persistent vomiting,abdominal_pain,high
-23,Mild abdominal discomfort,abdominal_pain,low
-24,Abdominal pain with fever,abdominal_pain,intermediate
-25,Abdominal pain and syncope,abdominal_pain,high
+81,Severe diffuse abdominal pain,abdominal_pain,high
+82,Abdominal pain with persistent vomiting,abdominal_pain,high
+83,Mild abdominal discomfort,abdominal_pain,low
+84,Abdominal pain with fever,abdominal_pain,intermediate
+85,Abdominal pain and syncope,abdominal_pain,high
+86,Sharp right lower quadrant pain,abdominal_pain,high
+87,Epigastric pain,abdominal_pain,intermediate
+88,Crampy abdominal pain,abdominal_pain,low
+89,Diffuse abdominal tenderness,abdominal_pain,high
+90,Abdominal pain elderly,abdominal_pain,intermediate
+91,Vomiting and abdominal pain,abdominal_pain,intermediate
+92,Severe localized pain,abdominal_pain,high
+93,Mild bloating,abdominal_pain,low
+94,Abdominal pain after meals,abdominal_pain,low
+95,Abdominal pain with hypotension,abdominal_pain,high
+96,Abdominal pain pregnant patient,abdominal_pain,high
+97,Lower abdominal pain,abdominal_pain,intermediate
+98,Abdominal pain with guarding,abdominal_pain,high
+99,Recurrent mild pain,abdominal_pain,low
+100,Abdominal pain and fever,abdominal_pain,intermediate
 
-26,Sudden right arm weakness,stroke,high
-27,Facial droop and slurred speech,stroke,high
-28,Severe headache with confusion,stroke,high
-29,Brief dizziness resolved,stroke,low
-30,Vision loss in one eye,stroke,intermediate
+101,Sudden right arm weakness,stroke,high
+102,Facial droop and slurred speech,stroke,high
+103,Severe headache with confusion,stroke,high
+104,Brief dizziness resolved,stroke,low
+105,Vision loss in one eye,stroke,intermediate
+106,Sudden aphasia,stroke,high
+107,Unilateral weakness,stroke,high
+108,Numbness in hand,stroke,intermediate
+109,Transient speech difficulty,stroke,intermediate
+110,Seizure at onset,stroke,high
+111,Sudden severe headache,stroke,high
+112,Facial asymmetry,stroke,high
+113,Mild headache,stroke,low
+114,Confusion and weakness,stroke,high
+115,Visual disturbance,stroke,intermediate
+116,Dizziness only,stroke,low
+117,Sudden balance problem,stroke,intermediate
+118,Left leg weakness,stroke,high
+119,Slurred speech,stroke,high
+120,Transient numbness,stroke,intermediate
