@@ -44,3 +44,12 @@ Identify patients with acute neurological symptoms who may have stroke or other 
 
 ## Notes
 Time-dependent condition. Early recognition is critical. Research triage reference only.
+
+## Structured Red Flags (canonical)
+- sudden_focal_neurological_deficit
+- speech_disturbance
+- facial_droop
+- unilateral_weakness
+- severe_headache_with_neurological_signs
+- seizure_at_onset
+
