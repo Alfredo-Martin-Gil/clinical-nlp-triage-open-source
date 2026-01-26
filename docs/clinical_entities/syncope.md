@@ -1,23 +1,47 @@
-# Syncope (TLoC) — Condition-specific guideline alignment (non-clinical use)
+# Clinical Entity
 
-## Purpose
-This document provides condition-specific reference notes to inform **risk-based triage reasoning** in this research prototype.
-It is not a diagnostic or treatment guideline, and it is not intended for real patient care.
+## Name
+Syncope (Transient Loss of Consciousness, TLoC)
 
-## High-risk features commonly emphasized in international guidance (conceptual)
-- Older age / frailty context
-- Absence or unclear prodrome
-- Potential cardiac features (e.g., exertional syncope, palpitations, family history of sudden death)
-- Abnormal vital signs or signs of poor perfusion
-- Persistent altered mental status
-- Associated chest pain, severe dyspnea, or focal neurological deficits
-- High-risk comorbidity context (cardiac disease, significant structural heart disease)
+## Clinical Goal
+Identify patients with transient loss of consciousness who may have a high risk of serious underlying cause and require elevated triage priority.
 
-## Triage implication (research framing)
-In prehospital/ED triage, the presence of high-risk features generally supports **elevated priority** for prompt transport and in-hospital evaluation, even if the patient is transiently stable.
+## Typical Presentations
+- Brief loss of consciousness with spontaneous recovery
+- Collapse with or without prodrome
+- Witnessed or unwitnessed episode
+- Post-event confusion or fatigue
 
-## International references (to be expanded with exact citations)
-- ESC syncope guideline (risk stratification and high-risk features)
-- ACEP clinical policy on syncope evaluation
-- NICE guidance on transient loss of consciousness (TLoC)
-- Canadian Syncope Risk Score (CSRS) (conceptual alignment)
+## Key Questions
+- Was there a prodrome (dizziness, nausea, visual changes)?
+- Did it occur during exertion or while supine?
+- Any chest pain, palpitations, or shortness of breath?
+- History of heart disease or sudden cardiac death in family?
+- Was there trauma associated with the event?
+
+## Red Flags
+- Absence or unclear prodrome  
+- Exertional syncope  
+- Palpitations before event  
+- Abnormal vital signs or signs of poor perfusion  
+- Persistent altered mental status  
+- Associated chest pain, severe dyspnea, or focal neurological deficits  
+
+## Risk Factors
+- Older age / frailty  
+- Known cardiac disease  
+- Significant structural heart disease  
+- High-risk comorbidity context  
+
+## Exclusion / Caution
+- Simple vasovagal episodes with clear prodrome and full recovery may be lower risk  
+- Intoxication, metabolic disturbance, or seizure may mimic syncope  
+
+## Suggested Disposition
+- High risk → urgent transport and priority evaluation  
+- Intermediate → medical evaluation recommended  
+- Low risk → consider non-urgent assessment if stable  
+
+## Notes
+Conceptual alignment with international guidance (ESC syncope guideline, ACEP clinical policy, NICE TLoC, Canadian Syncope Risk Score).  
+This document is for research triage reasoning only and not for real patient care.
