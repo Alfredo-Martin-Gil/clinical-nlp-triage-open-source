@@ -1,11 +1,40 @@
 term,category,weight,language,note
-"dolor torácico opresivo",chest_pain,4,es,"Suggestive of acute coronary syndrome"
-"dolor en el pecho al esfuerzo",chest_pain,3,es,"Possible stable angina or ischemia"
-"disnea en reposo",dyspnea,4,es,"High-risk respiratory distress"
-"shortness of breath",dyspnea,3,en,"General dyspnea symptom"
-"no mueve un lado del cuerpo",neuro_deficit,5,es,"Possible acute stroke"
-"confusión aguda",neuro_deficit,4,es,"Acute confusion, consider delirium or metabolic emergency"
-"hypotension",shock,5,en,"Possible shock state"
-"presión muy baja",shock,5,es,"Severe hypotension, high-risk"
-"fiebre > 39C",infection,3,es,"Consider severe infection"
-"rigors and fever",infection,3,en,"Systemic infection, sepsis possible"
+syncope_exertion,syncope,5,en,Exertional syncope
+syncope_no_prodrome,syncope,5,en,Absence of prodrome
+palpitations_before_syncope,syncope,4,en,Palpitations before event
+abnormal_vital_signs,general,5,en,Abnormal vital signs
+persistent_altered_mental_status,general,5,en,Altered mental status
+chest_pain_with_syncope,syncope,5,en,Chest pain with syncope
+focal_neurological_deficit,neurology,5,en,Focal neurological deficit
+
+ongoing_chest_pain,chest_pain,5,en,Ongoing chest pain
+chest_pain_radiation,chest_pain,5,en,Chest pain radiation
+chest_pain_with_dyspnea,chest_pain,5,en,Chest pain with dyspnea
+chest_pain_with_syncope,chest_pain,5,en,Chest pain with syncope
+diaphoresis_with_chest_pain,chest_pain,4,en,Diaphoresis with chest pain
+hemodynamic_instability,general,5,en,Hemodynamic instability
+
+severe_respiratory_distress,dyspnea,5,en,Severe respiratory distress
+low_oxygen_saturation,dyspnea,5,en,Low oxygen saturation
+cyanosis,dyspnea,5,en,Cyanosis
+altered_mental_status_with_dyspnea,dyspnea,5,en,Altered mental status
+chest_pain_with_dyspnea,dyspnea,5,en,Chest pain with dyspnea
+
+altered_mental_status,sepsis,5,en,Altered mental status
+hypotension,sepsis,5,en,Hypotension
+tachypnea,sepsis,4,en,Tachypnea
+extreme_temperature,sepsis,4,en,High or low temperature
+poor_perfusion,sepsis,5,en,Poor perfusion
+
+severe_abdominal_pain,abdominal_pain,5,en,Severe abdominal pain
+peritonism,abdominal_pain,5,en,Peritoneal signs
+persistent_vomiting,abdominal_pain,4,en,Persistent vomiting
+fever_with_abdominal_pain,abdominal_pain,4,en,Fever with abdominal pain
+syncope_with_abdominal_pain,abdominal_pain,5,en,Syncope with abdominal pain
+
+sudden_focal_neurological_deficit,stroke,5,en,Sudden focal deficit
+speech_disturbance,stroke,5,en,Speech disturbance
+facial_droop,stroke,5,en,Facial droop
+unilateral_weakness,stroke,5,en,Unilateral weakness
+severe_headache_with_neurological_signs,stroke,5,en,Severe headache with neuro signs
+seizure_at_onset,stroke,5,en,Seizure at onset
