@@ -45,3 +45,11 @@ Identify patients with suspected infection who may have sepsis or impending shoc
 
 ## Notes
 Early recognition of systemic involvement is the main triage objective. Research reference only.
+
+
+## Structured Red Flags (canonical)
+- altered_mental_status
+- hypotension
+- tachypnea
+- extreme_temperature
+- poor_perfusion
