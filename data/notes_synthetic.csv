@@ -125,23 +125,23 @@ id,text,entity,label
 119,Slurred speech,stroke,high
 120,Transient numbness,stroke,intermediate
 
-121,Sudden severe thunderclap headache,headache,high
-122,Headache with fever and neck stiffness,headache,high
-123,New onset headache age over 60,headache,high
-124,Headache with focal weakness,headache,high
-125,Worst headache of life,headache,high
-126,Headache after minor head trauma,headache,intermediate
-127,Headache with vomiting,headache,intermediate
-128,Progressive worsening headache days,headache,intermediate
-129,Headache with visual aura,headache,intermediate
-130,Headache hypertensive patient,headache,intermediate
-131,Tension type frontal headache,headache,low
-132,Intermittent mild headache,headache,low
-133,Headache relieved by rest,headache,low
-134,Recurrent similar headaches history migraine,headache,low
-135,Stress related headache,headache,low
-136,Headache with photophobia,headache,intermediate
-137,Morning headache with vomiting,headache,high
-138,Headache with altered mental status,headache,high
-139,Brief stabbing headache seconds,headache,low
-140,Headache after dehydration,headache,low
+121,Hives and facial swelling after peanuts,allergic_reaction,high
+122,Throat tightness after medication,allergic_reaction,high
+123,Generalized itching without swelling,allergic_reaction,low
+124,Rash after new antibiotic,allergic_reaction,intermediate
+125,Lip swelling and difficulty breathing,allergic_reaction,high
+126,Mild localized rash on arm,allergic_reaction,low
+127,Diffuse urticaria with vomiting,allergic_reaction,high
+128,Skin rash and fever,allergic_reaction,intermediate
+129,Sneezing and itchy eyes,allergic_reaction,low
+130,Anaphylaxis after bee sting,allergic_reaction,high
+131,Swollen tongue,allergic_reaction,high
+132,Facial edema without dyspnea,allergic_reaction,intermediate
+133,Pruritic rash,allergic_reaction,low
+134,Hives with wheezing,allergic_reaction,high
+135,Localized contact dermatitis,allergic_reaction,low
+136,Allergic reaction unknown trigger,allergic_reaction,intermediate
+137,Angioedema,allergic_reaction,high
+138,Itching after food ingestion,allergic_reaction,low
+139,Generalized rash and hypotension,allergic_reaction,high
+140,Rash and mild lip swelling,allergic_reaction,intermediate
