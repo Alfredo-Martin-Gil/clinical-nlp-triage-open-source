@@ -145,3 +145,24 @@ id,text,entity,label
 138,Itching after food ingestion,allergic_reaction,low
 139,Generalized rash and hypotension,allergic_reaction,high
 140,Rash and mild lip swelling,allergic_reaction,intermediate
+
+141,Acute confusion,altered_mental_status,intermediate
+142,Unresponsive patient,altered_mental_status,high
+143,Confused and disoriented,altered_mental_status,intermediate
+144,Altered mental status with fever,altered_mental_status,high
+145,Sudden agitation,altered_mental_status,intermediate
+146,Progressive confusion elderly,altered_mental_status,intermediate
+147,Obtunded patient,altered_mental_status,high
+148,Altered mental status after head trauma,altered_mental_status,high
+149,Mild confusion resolved,altered_mental_status,low
+150,Delirium,altered_mental_status,high
+151,Altered mental status with hypotension,altered_mental_status,high
+152,Confusion after medication change,altered_mental_status,intermediate
+153,Disoriented to time only,altered_mental_status,low
+154,Altered mental status and vomiting,altered_mental_status,high
+155,Acute psychosis,altered_mental_status,intermediate
+156,Lethargic patient,altered_mental_status,intermediate
+157,Unarousable,altered_mental_status,high
+158,Transient confusion,altered_mental_status,low
+159,Altered mental status diabetic patient,altered_mental_status,intermediate
+160,Altered mental status with seizure,altered_mental_status,high
