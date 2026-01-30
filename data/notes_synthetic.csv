@@ -166,3 +166,24 @@ id,text,entity,label
 158,Transient confusion,altered_mental_status,low
 159,Altered mental status diabetic patient,altered_mental_status,intermediate
 160,Altered mental status with seizure,altered_mental_status,high
+
+161,Acute low back pain after lifting,back_pain,intermediate
+162,Back pain with fever,back_pain,high
+163,Chronic low back pain,back_pain,low
+164,Back pain with urinary retention,back_pain,high
+165,Back pain radiating to leg,back_pain,intermediate
+166,Back pain after minor trauma,back_pain,intermediate
+167,Severe back pain sudden onset,back_pain,high
+168,Back pain with weakness in legs,back_pain,high
+169,Mild muscular back pain,back_pain,low
+170,Back pain worse at night,back_pain,intermediate
+171,Back pain with weight loss,back_pain,high
+172,Back pain after exercise resolved,back_pain,low
+173,Recurrent mechanical back pain,back_pain,low
+174,Back pain with numbness,back_pain,intermediate
+175,Back pain and incontinence,back_pain,high
+176,Localized lumbar tenderness,back_pain,intermediate
+177,Back pain elderly patient,back_pain,intermediate
+178,Back pain with history of cancer,back_pain,high
+179,Back pain with stiffness morning,back_pain,low
+180,Back pain with trauma and hypotension,back_pain,high
