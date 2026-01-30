@@ -1,40 +1,40 @@
 term,category,weight,language,note
-syncope_exertion,syncope,5,en,Exertional syncope
-syncope_no_prodrome,syncope,5,en,Absence of prodrome
-palpitations_before_syncope,syncope,4,en,Palpitations before event
-abnormal_vital_signs,general,5,en,Abnormal vital signs
-persistent_altered_mental_status,general,5,en,Altered mental status
-chest_pain_with_syncope,syncope,5,en,Chest pain with syncope
-focal_neurological_deficit,neurology,5,en,Focal neurological deficit
+exertional syncope,syncope,5,en,Exertional syncope
+syncope without prodrome,syncope,5,en,Absence of prodrome
+palpitations,syncope,4,en,Palpitations
+abnormal vital signs,syncope,5,en,Abnormal vital signs
+confusion,syncope,5,en,Altered mental status
+chest pain with syncope,syncope,5,en,Chest pain with syncope
+focal weakness,syncope,5,en,Focal neurological deficit
+dyspnea,syncope,5,en,Dyspnea
 
-ongoing_chest_pain,chest_pain,5,en,Ongoing chest pain
-chest_pain_radiation,chest_pain,5,en,Chest pain radiation
-chest_pain_with_dyspnea,chest_pain,5,en,Chest pain with dyspnea
-chest_pain_with_syncope,chest_pain,5,en,Chest pain with syncope
-diaphoresis_with_chest_pain,chest_pain,4,en,Diaphoresis with chest pain
-hemodynamic_instability,general,5,en,Hemodynamic instability
+ongoing central chest pain,chest_pain,5,en,Ongoing chest pain
+chest pain radiating,chest_pain,5,en,Radiation
+shortness of breath,chest_pain,5,en,Chest pain with dyspnea
+diaphoresis,chest_pain,4,en,Diaphoresis
+hypotension,chest_pain,5,en,Hemodynamic instability
 
-severe_respiratory_distress,dyspnea,5,en,Severe respiratory distress
-low_oxygen_saturation,dyspnea,5,en,Low oxygen saturation
+severe shortness of breath,dyspnea,5,en,Severe dyspnea
 cyanosis,dyspnea,5,en,Cyanosis
-altered_mental_status_with_dyspnea,dyspnea,5,en,Altered mental status
-chest_pain_with_dyspnea,dyspnea,5,en,Chest pain with dyspnea
+unable to speak full sentences,dyspnea,5,en,Respiratory distress
+confusion,dyspnea,5,en,Altered mental status
+hypotension,dyspnea,5,en,Hypotension
 
-altered_mental_status,sepsis,5,en,Altered mental status
-hypotension,sepsis,5,en,Hypotension
+confused,sepsis,5,en,Altered mental status
+low blood pressure,sepsis,5,en,Hypotension
 tachypnea,sepsis,4,en,Tachypnea
-extreme_temperature,sepsis,4,en,High or low temperature
-poor_perfusion,sepsis,5,en,Poor perfusion
+fever,sepsis,4,en,Fever
+cold mottled skin,sepsis,5,en,Poor perfusion
 
-severe_abdominal_pain,abdominal_pain,5,en,Severe abdominal pain
-peritonism,abdominal_pain,5,en,Peritoneal signs
-persistent_vomiting,abdominal_pain,4,en,Persistent vomiting
-fever_with_abdominal_pain,abdominal_pain,4,en,Fever with abdominal pain
-syncope_with_abdominal_pain,abdominal_pain,5,en,Syncope with abdominal pain
+severe diffuse abdominal pain,abdominal_pain,5,en,Severe pain
+persistent vomiting,abdominal_pain,4,en,Persistent vomiting
+abdominal pain and syncope,abdominal_pain,5,en,Syncope with pain
+guarding,abdominal_pain,5,en,Peritoneal signs
+hypotension,abdominal_pain,5,en,Hypotension
 
-sudden_focal_neurological_deficit,stroke,5,en,Sudden focal deficit
-speech_disturbance,stroke,5,en,Speech disturbance
-facial_droop,stroke,5,en,Facial droop
-unilateral_weakness,stroke,5,en,Unilateral weakness
-severe_headache_with_neurological_signs,stroke,5,en,Severe headache with neuro signs
-seizure_at_onset,stroke,5,en,Seizure at onset
+facial droop,stroke,5,en,Facial droop
+slurred speech,stroke,5,en,Speech disturbance
+aphasia,stroke,5,en,Aphasia
+unilateral weakness,stroke,5,en,Unilateral weakness
+seizure at onset,stroke,5,en,Seizure at onset
+vision loss,stroke,5,en,Visual loss
