@@ -1,188 +1,158 @@
-# 1. Introducción
+# Baseline Scoring
 
-## Propósito del baseline
-Establecer una línea base mínima para la detección automática de red flags clínicos en notas sintéticas de triaje utilizando un enfoque simple basado en lexicones. Este baseline NO pretende ser clínicamente seguro, sino ofrecer un punto de comparación para futuras versiones más avanzadas (v0.1.1 en adelante).
+This document describes the current baseline scoring logic implemented in the notebook:
 
-## Contexto del proyecto clinical-nlp-triage-open-source
-El proyecto busca desarrollar un asistente de triaje abierto, reproducible y diseñado para equipos multidisciplinarios trabajando de forma asincrónica en múltiples zonas horarias. El objetivo final es explorar cómo el NLP clínico puede apoyar la orientación inicial de pacientes en contextos con baja disponibilidad médica.
+`notebooks/triage_rules_baseline.ipynb`
 
-# 2. Dataset utilizado
+The baseline is intentionally simple, transparent, and fully rule-based.
 
-## Fuente y tipo de datos
-Se utiliza el archivo notes_synthetic.csv, compuesto por notas médicas sintéticas generadas para evitar cualquier presencia de PHI.
+---
 
-## Estructura
-Columnas incluidas:
-- id
-- text
-- label_redflag (solo si aplica)
+## 1. Purpose
 
-Incluye descripciones clínicas básicas: síntomas, contexto, motivo de consulta y pistas del estado general del paciente.
+Provide an interpretable first-pass triage risk signal from free-text notes by:
 
-## Consideraciones éticas
-- Todos los datos son generados artificialmente.
-- No existe ningún tipo de información sensible.
-- El dataset puede ser distribuido íntegramente bajo licencia open-source.
+- Detecting red-flag clinical terms
+- Applying severity weights
+- Handling simple negation
+- Handling simple historical context
+- Producing a numeric score and mapped risk label
 
-# 3. Pipeline del baseline
+This is a research and educational baseline, not a medical device.
 
-## Librerías utilizadas
-- pandas
-- re
-- scikit-learn (solo métricas)
+---
 
-## Tokenización
-Tokenización simple basada en espacios. No se usa tokenización clínica avanzada.
+## 2. Lexicon Structure
 
-## Normalización mínima
-- Conversión a minúsculas
-- Eliminación de símbolos básicos
-- Sin stemming ni lematización
+`data/lexicon_redflags.csv`
 
-## Lógica de detección de red flags (lexicon-based)
-El pipeline compara cada texto con un conjunto de términos críticos definidos en lexicon_redflags.csv.
-Si encuentra uno o más términos → se marca como red flag.
+Columns:
 
-## Scoring inicial
-Salida binaria:
-- 1 = red flag detectado
-- 0 = sin red flag detectado
+- term → phrase to match
+- category → clinical entity
+- weight → integer severity weight (1–5)
+- language → language code
+- note → human explanation
 
-# 4. Métricas aplicadas
+Example:
 
-### Precision
-Proporción de true positives frente al total de detecciones.
+exertional syncope,syncope,5,en,Exertional syncope
 
-### Recall
-Capacidad para detectar todos los casos relevantes.
+---
 
-### F1-score
-Media armónica entre precision y recall.
+## 3. Matching Logic
 
-## Limitaciones del enfoque lexicón
-- No reconoce contexto clínico real.
-- No detecta negaciones (“no dolor en el pecho”).
-- No distingue gravedad.
-- No interpreta lenguaje natural coloquial del paciente.
-- Alta tasa esperada de falsos positivos/negativos.
+For each note:
 
-## Por qué este baseline NO es clínicamente seguro
-- No comprende relaciones anatómicas ni temporales.
-- No diferencia síntomas críticos de síntomas inespecíficos.
-- Expone a errores graves de subdetección.
+- Convert text to lowercase
+- For each lexicon term:
+  - Check if term appears as substring
 
-# 5. Resultados del baseline
+If term appears → candidate match.
 
-### Tabla de métricas (pendiente de resultados finales)
+---
 
-| Métrica | Valor |
-|--------|--------|
-| Precision | X.XX |
-| Recall | X.XX |
-| F1-Score | X.XX |
+## 4. Negation Handling (Simple Heuristic)
 
-### Ejemplos de detecciones correctas
-- “dolor en el pecho” → detectado
-- “hemoptisis” → detectado
+Before accepting a match, the system checks a small window of text before the term for negation cues such as:
 
-### Falsos negativos
-- “me falta el aire cuando camino” (no aparece la palabra exacta)
+- no
+- denies
+- without
+- not
 
-### Falsos positivos
-- “tengo miedo de estar grave” (no indica red flag real)
+If a negation cue is found close before the term:
 
-## Interpretación técnica
-El baseline es extremadamente simple pero útil como primera referencia cuantitativa. Su objetivo es mostrar limitaciones reales, no ofrecer un rendimiento aceptable.
+→ The match is discarded.
 
-# 6. Limitaciones del baseline
-- Sin modelado contextual
-- Sin desambiguación semántica
-- No reconoce negaciones clínicas
-- Dependencia total del lexicon
-- Ambigüedad clínica sin resolver
-- No representa lenguaje cotidiano real
-- Sin embeddings, sin modelos pre-entrenados, sin razonamiento
+Goal: avoid counting statements like:
 
-# 7. Próximos pasos hacia v0.1.1
-- Integrar embeddings (FastText, ClinicalBERT, etc.)
-- Mejorar el lexicon con revisión médica
-- Añadir reglas basadas en clinical reasoning
-- Crear ground truth anotado por médicos del proyecto
-- Establecer benchmarks mínimos por categoría
-- Añadir módulo de negation handling
+"No chest pain"
 
-# 8. Consideraciones de seguridad y ética
-- Riesgo de infra-detección en síntomas críticos
-- Riesgo de sobre-triage
-- Necesidad de validación humana en cada iteración
-- Modelo no apto para uso clínico
-- En línea con los principios de IA segura, explicable y responsable
+This is not full syntactic negation detection.
 
-# 9. Conclusión
-Este baseline sirve como punto de partida reproducible para evaluar mejoras progresivas. Proporciona una estructura mínima desde la cual construir versiones más sofisticadas, seguras y clínicamente relevantes.
+---
 
-# 10. Reproducibilidad
+## 5. Historical / Past Context Handling (Simple Heuristic)
 
-## Requisitos
-- Python 3.10+
-- Librerías listadas en requirements.txt
+If the text contains historical cues such as:
 
-## Pasos
-1. Ejecutar notebooks/triage_rules_baseline.ipynb
-2. Generar predictions.csv
-3. Ejecutar script de métricas
-4. Confirmar resultados equivalentes a los publicados
+- history of
+- previous
+- years ago
+- prior
 
-## Semillas
-- seed = 42
+Then matched term weight is reduced (downweighted).
 
-# 11. Cómo contribuir (resumen)
-- Crear branch: feature/nombre
-- Crear PR con explicación clara
-- Añadir ejemplos cuando corresponda
-- Mantener estilo PEP8
-- Cambios en el lexicon requieren revisión médica
+Goal: distinguish active complaint vs past history.
 
-# 12. Diccionario de conceptos
-- Red flag: signo/síntoma que indica riesgo elevado
-- Token: unidad mínima (palabra)
-- Lexicon: lista de términos críticos
-- Embedding: vector semántico
-- Negation handling: reconocimiento de negaciones
+Example:
 
-# 13. Scope / Out of Scope
+"History of chest pain years ago"  
+Counts with reduced weight.
 
-## Scope
-- Pipeline lexicon-based
-- Detección binaria simple
-- Métricas básicas
+---
 
-## Out of Scope
-- Uso clínico real
-- Modelos avanzados (transformers)
-- Diagnóstico automatizado
-- Razonamiento clínico profundo
+## 6. Score Computation
 
-# 14. Roadmap compacto
-- Añadir embeddings → prioridad alta
-- Crear ground truth clínico
-- Reglas clínicas basadas en reasoning
-- Negation detection
-- Ampliar lexicon con categorías nuevas
-- Mejorar documentación
+For each accepted match:
 
-# 15. Riesgos técnicos y mitigación
+- Add its weight to total score
 
-| Riesgo | Mitigación |
-|--------|------------|
-| Data leakage | Aislar dataset y logs |
-| Sobreajuste | Evitar tuning prematuro |
-| Ambigüedad clínica | Reglas clínicas + revisión médica |
-| Lenguaje no estándar | Expandir dataset sintético |
+Total score = sum(weight_i)
 
-# 16. Plan de validación futura
-- Validación médica por profesionales
-- Ground truth comparativo
-- Evaluación de seguridad
-- Documentación de fallos críticos
-- Auditoría continua del pipeline
+The system also keeps a list of matched terms for debugging.
+
+---
+
+## 7. Score → Label Mapping
+
+Current thresholds:
+
+- score >= 5 → high
+- score 3–4 → intermediate
+- score <= 2 → low
+
+These thresholds are heuristic and expected to evolve.
+
+---
+
+## 8. Output Fields
+
+Notebook produces:
+
+- predicted_label
+- score
+- matched_terms
+
+Exported to:
+
+`outputs/predictions.csv`
+
+---
+
+## 9. Design Principles
+
+- Deterministic
+- Transparent
+- Auditable
+- No machine learning
+- No embeddings
+- No hidden state
+
+This baseline exists to:
+
+Establish a measurable, explainable reference point before introducing more complex NLP techniques.
+
+---
+
+## 10. Known Limitations
+
+- Substring matching only
+- No tokenization
+- No lemmatization
+- No spelling tolerance
+- Very simple negation handling
+- Very simple temporal handling
+
+These limitations are intentional at this stage.
