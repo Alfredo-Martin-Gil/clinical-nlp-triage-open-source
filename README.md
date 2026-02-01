@@ -32,13 +32,28 @@ Early-stage clinical knowledge structuring.
 
 This repository currently focuses on externalizing and organizing clinical reasoning for triage and early risk detection.
 
-There is no executable triage system yet.
+### What is already runnable (baseline)
 
-No clinical decision support engine is implemented at this stage.
+A minimal, explainable baseline exists:
+
+- A **rule-based engine** that counts lexicon hits in free text and produces a simple risk label  
+  (`src/rules_engine.py`)
+- A prototype notebook showing the baseline workflow  
+  (`notebooks/triage_rules_baseline.ipynb`)
+- Synthetic inputs and example outputs under `data/` and `outputs/`
+
+This baseline is intentionally simple and is used to validate the data shape, rules, and documentation conventions.
+
+### What is NOT available yet
+
+- No validated triage model
+- No clinical-grade decision support system
+- No deployment, monitoring, governance, or safety case
+- No prospective evaluation on real patient data
 
 ---
 
-## 🔎 Related Conceptual Work
+## 🧠 Related Conceptual Work
 
 This project is part of a broader exploration of **clinical decision-making under uncertainty**
 in prehospital care.
@@ -46,7 +61,8 @@ in prehospital care.
 A detailed operational description of how real-world decisions are made — without algorithms
 or models — is documented here:
 
-👉 **[prehospital-clinical-decision-uncertainty](https://github.com/Alfredo-Martin-Gil/prehospital-clinical-decision-uncertainty)**
+📎 **prehospital-clinical-decision-uncertainty**  
+(https://github.com/Alfredo-Martin-Gil/prehospital-clinical-decision-uncertainty)
 
 That repository provides the clinical reasoning context that informs this implementation,
 but contains **no code and no decision automation**.
@@ -59,9 +75,10 @@ This project is grounded in real-world emergency and prehospital clinical practi
 
 For a detailed explanation of the clinical motivation, problem framing, and ethical positioning behind this initiative, see:
 
-➡️ **[Clinical Origin of the Project](docs/clinical_origin.md)**
+⚑ **Clinical Origin of the Project** (`docs/clinical_origin.md`)
 
-This document describes *why* this project exists, the role of uncertainty and cognitive overload in triage, and the principles that guide its development.
+This document describes *why* this project exists, the role of uncertainty and cognitive overload in triage,
+and the principles that guide its development.
 
 ---
 
@@ -71,27 +88,32 @@ This project follows internationally accepted principles of **risk-based triage*
 and early clinical **risk stratification** in emergency and prehospital settings.
 
 ### What this project does (and does not) do
+
 - It supports **early risk awareness and prioritization** under uncertainty.
 - It does **not** provide diagnoses, replace clinician judgment, or make autonomous decisions.
 - Triage priority ≠ diagnosis; decision support ≠ autonomous decision-making.
 
 ### Alignment with validated international frameworks
+
 The approach is conceptually aligned with:
-- Guideline-based **early risk stratification** (condition-specific, published by international societies).
-- International triage systems where **high-risk features override transient stability**, including **ESI**, **CTAS**, and **MTS**.
+
+- Guideline-based **early risk stratification** (condition-specific, published by international societies)
+- International triage systems where **high-risk features override transient stability**, including **ESI**, **CTAS**, and **MTS**
 
 ### Relation to ACLS / advanced life support
+
 ACLS algorithms are not implemented here because they apply to cardiac arrest, life-threatening arrhythmias, or established instability.  
 This project operates **upstream of ACLS**, at the triage and early assessment phase, and does not interfere with ALS activation when deterioration occurs.
 
 ### Where condition-specific detail lives
+
 Condition-specific guideline notes (e.g., syncope, chest pain, dyspnea, stroke, sepsis, trauma) are maintained under:
 
 `docs/clinical_entities/`
 
 ---
 
-## 🧠 Problem Statement
+## 🌋 Problem Statement
 
 In emergency and prehospital settings, clinical decisions are frequently made under conditions of:
 
@@ -106,7 +128,7 @@ This project originates from real-world clinical practice, where triage often re
 
 ---
 
-## 🚑 Clinical Context
+## 🧩 Clinical Context
 
 This project is grounded in real emergency and prehospital medicine workflows, including:
 
@@ -124,16 +146,18 @@ and support — not replace — clinical judgment.
 ## ⚖️ Project Philosophy
 
 ### What this project IS
-- A research and educational prototype.
-- A clinical decision-support exploration tool.
-- A transparent, explainable baseline for triage reasoning.
-- A multidisciplinary collaboration between clinicians, bioengineers and AI practitioners.
+
+- A research and educational prototype
+- A clinical decision-support exploration tool
+- A transparent, explainable baseline for triage reasoning
+- A multidisciplinary collaboration between clinicians, bioengineers, and AI practitioners
 
 ### What this project is NOT
-- ❌ Not a medical device.
-- ❌ Not a diagnostic system.
-- ❌ Not an autonomous decision-maker.
-- ❌ Not intended for real patient care.
+
+- ❌ Not a medical device
+- ❌ Not a diagnostic system
+- ❌ Not an autonomous decision-maker
+- ❌ Not intended for real patient care
 
 The goal is to **augment human decision-making**, especially in environments where uncertainty and cognitive overload increase the risk of preventable harm.
 
@@ -153,48 +177,33 @@ working asynchronously across multiple time zones (LATAM, Europe, North America)
 
 The initial versions focus on:
 
-- Extracting symptoms and red flags from free-text triage notes (Spanish/English).
-- Assigning severity weights.
-- Producing a simple **priority/urgency score**.
-- Documenting all assumptions, limitations and safety risks clearly.
+- Extracting symptoms and red flags from free-text triage notes (Spanish/English)
+- Assigning severity weights
+- Producing a simple **priority/urgency score**
+- Documenting all assumptions, limitations and safety risks clearly
 
 ---
 
-## 🧩 Project Structure
+## 🧱 Project Structure
 
 ```text
 clinical-nlp-triage-open-source/
-│
 ├── data/
 │   ├── lexicon_redflags.csv
 │   └── notes_synthetic.csv
-│
 ├── notebooks/
 │   └── triage_rules_baseline.ipynb
-│
 ├── src/
-│   └── (future Python modules)
-│
+│   └── rules_engine.py
 ├── outputs/
 │   └── predictions.csv
-│
 ├── docs/
 │   ├── baseline_scoring.md
-│   └── roles.md
-│
+│   ├── roles.md
+│   ├── clinical_origin.md
+│   ├── clinical_uncertainty.md
+│   ├── clinical_entities/
+│   └── rules/
 ├── README.md
 ├── CONTRIBUTING.md
 └── LICENSE
-
-
-
-
-
-
-
-
-
-
-
-
-
