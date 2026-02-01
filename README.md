@@ -34,6 +34,10 @@ This repository currently focuses on externalizing and organizing clinical reaso
 
 ### What is already runnable (baseline)
 
+**Baseline status:** weighted lexicon-based scoring with simple negation handling and simple history/past-context heuristics.
+
+This baseline performs weighted counting of red-flag terms from a clinical lexicon, applies basic negation detection, and incorporates minimal heuristics for recent symptom history or repeated mentions across a note.
+
 A minimal, explainable baseline exists:
 
 - A **rule-based engine** that counts lexicon hits in free text and produces a simple risk label  
