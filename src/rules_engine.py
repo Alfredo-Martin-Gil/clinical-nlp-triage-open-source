@@ -29,7 +29,7 @@ def normalize_terms(lexicon: pd.DataFrame) -> list[str]:
         .str.strip()
         .str.lower()
     )
-    return [t for t in terms.tolist() if t]
+    return sorted({t for t in terms.tolist() if t})
 
 
 def count_hits(text: str, terms: list[str]) -> int:
