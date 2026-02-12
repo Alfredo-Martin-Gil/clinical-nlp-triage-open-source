@@ -46,4 +46,7 @@ jobs:
 
       - name: Run baseline smoke
         run: |
-          python src/rules_engine.py --notes data/notes_synthetic.csv --lexicon data/lexicon_redflags.csv --output outputs/predictions.csv
+          python src/rules_engine.py \
+            --notes data/notes_synthetic.csv \
+            --lexicon data/lexicon_redflags.csv \
+            --out outputs/predictions.csv
