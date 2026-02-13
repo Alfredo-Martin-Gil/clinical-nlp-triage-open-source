@@ -8,7 +8,8 @@ import pandas as pd
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(description="Evaluate baseline predictions (optional ground truth).")
     p.add_argument("--predictions", required=True, type=Path, help="CSV produced by baseline engine")
-    p.add_argument("--pred_col", default="predicted_label", help="Prediction column name")
+    # v0.1 default output column
+    p.add_argument("--pred_col", default="risk_level", help="Prediction column name")
     p.add_argument("--truth_col", default="label", help="Ground-truth column name (if present)")
     return p
 
