@@ -8,7 +8,7 @@ from triage.engine import run_baseline
 
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
-        description="Baseline rules engine: lexicon hits -> risk label"
+        description="Baseline risk escalation engine (v0.1): lexicon hits -> risk escalation outputs"
     )
     p.add_argument(
         "--lexicon",
@@ -20,7 +20,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--notes",
         required=True,
         type=Path,
-        help="Path to notes CSV (must include required text column)",
+        help="Path to notes CSV (must include required text column: triage_note)",
     )
     p.add_argument(
         "--out",
@@ -34,13 +34,12 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> int:
     args = build_parser().parse_args()
 
-    # NOTE: engine expects a text column name; current dataset may vary by schema.
-    # We default to the historical baseline column name used in this CLI: "text".
+    # v0.1 contract: official notes text column is 'triage_note'
     run_baseline(
         notes_path=args.notes,
         lexicon_path=args.lexicon,
         out_path=args.out,
-        text_column="text",
+        text_column="triage_note",
     )
     return 0
 
