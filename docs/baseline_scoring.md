@@ -1,158 +1,98 @@
-# Baseline Scoring
+# Baseline Scoring (v0.1)
 
-This document describes the current baseline scoring logic implemented in the notebook:
+This document describes the **current v0.1 baseline** implemented in code under:
 
-`notebooks/triage_rules_baseline.ipynb`
+- `src/triage/engine.py` (core)
+- `src/rules_engine.py` (CLI)
 
-The baseline is intentionally simple, transparent, and fully rule-based.
+The v0.1 baseline is intentionally simple, transparent, deterministic, and designed for:
+
+- **non-clinical users**
+- **risk escalation**
+- **human contact required** for **intermediate/high** risk
+
+> ⚠️ Clinical safety notice  
+> This is a research/prototype baseline. It does not diagnose or treat.  
+> Do not use it as a substitute for professional medical judgment.
 
 ---
 
 ## 1. Purpose
 
-Provide an interpretable first-pass triage risk signal from free-text notes by:
+Provide an interpretable **risk escalation signal** from free-text notes by:
 
-- Detecting red-flag clinical terms
-- Applying severity weights
-- Handling simple negation
-- Handling simple historical context
-- Producing a numeric score and mapped risk label
-
-This is a research and educational baseline, not a medical device.
+- Detecting red-flag terms (substring matching)
+- Counting detected red flags (hits)
+- Mapping hits to a coarse risk level
+- Producing safe, conservative recommended actions
 
 ---
 
-## 2. Lexicon Structure
+## 2. Inputs
 
-`data/lexicon_redflags.csv`
+### Notes
+Expected column:
 
-Columns:
+- `triage_note`
 
-- term → phrase to match
-- category → clinical entity
-- weight → integer severity weight (1–5)
-- language → language code
-- note → human explanation
+### Lexicon
+Expected column:
 
-Example:
-
-exertional syncope,syncope,5,en,Exertional syncope
+- `term`
 
 ---
 
-## 3. Matching Logic
+## 3. Matching Logic (v0.1)
 
 For each note:
 
 - Convert text to lowercase
 - For each lexicon term:
   - Check if term appears as substring
-
-If term appears → candidate match.
-
----
-
-## 4. Negation Handling (Simple Heuristic)
-
-Before accepting a match, the system checks a small window of text before the term for negation cues such as:
-
-- no
-- denies
-- without
-- not
-
-If a negation cue is found close before the term:
-
-→ The match is discarded.
-
-Goal: avoid counting statements like:
-
-"No chest pain"
-
-This is not full syntactic negation detection.
+- Collect matched terms (traceable output)
 
 ---
 
-## 5. Historical / Past Context Handling (Simple Heuristic)
+## 4. Score Computation (v0.1)
 
-If the text contains historical cues such as:
-
-- history of
-- previous
-- years ago
-- prior
-
-Then matched term weight is reduced (downweighted).
-
-Goal: distinguish active complaint vs past history.
-
-Example:
-
-"History of chest pain years ago"  
-Counts with reduced weight.
+- `risk_score` = number of matched terms (hits)
 
 ---
 
-## 6. Score Computation
+## 5. Score → Risk Level Mapping (v0.1)
 
-For each accepted match:
-
-- Add its weight to total score
-
-Total score = sum(weight_i)
-
-The system also keeps a list of matched terms for debugging.
+- hits >= 2 → `high`
+- hits == 1 → `intermediate`
+- hits == 0 → `low`
 
 ---
 
-## 7. Score → Label Mapping
+## 6. Escalation Policy (Non-clinical users)
 
-Current thresholds:
+- `intermediate` or `high` → **requires_human_contact = true**
+- `low` → **requires_human_contact = false**
 
-- score >= 5 → high
-- score 3–4 → intermediate
-- score <= 2 → low
-
-These thresholds are heuristic and expected to evolve.
+Recommended actions are conservative and escalation-oriented.
 
 ---
 
-## 8. Output Fields
+## 7. Output Contract (v0.1)
 
-Notebook produces:
+The baseline produces:
 
-- predicted_label
-- score
-- matched_terms
-
-Exported to:
-
-`outputs/predictions.csv`
-
----
-
-## 9. Design Principles
-
-- Deterministic
-- Transparent
-- Auditable
-- No machine learning
-- No embeddings
-- No hidden state
-
-This baseline exists to:
-
-Establish a measurable, explainable reference point before introducing more complex NLP techniques.
+- `engine_version`
+- `risk_level`
+- `risk_score`
+- `detected_red_flags` (pipe-separated terms)
+- `requires_human_contact`
+- `recommended_action`
+- `safety_notice`
 
 ---
 
-## 10. Known Limitations
+## 8. Roadmap Note
 
-- Substring matching only
-- No tokenization
-- No lemmatization
-- No spelling tolerance
-- Very simple negation handling
-- Very simple temporal handling
+More advanced features (weights, negation handling, temporal/history heuristics, matched term metadata)
+will be introduced in later versions (v0.2+), with tests and metric protocols.
 
-These limitations are intentional at this stage.
+Notebooks remain exploratory and must not be treated as the authoritative baseline.
