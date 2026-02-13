@@ -3,6 +3,7 @@ import importlib.util
 import sys
 from pathlib import Path
 import tempfile
+import re
 
 import pandas as pd
 
@@ -48,7 +49,7 @@ class TestRulesEngineBaseline(unittest.TestCase):
         self.assertIn("shock", terms)
         self.assertEqual(len(terms), 2)
 
-    def test_run_baseline_outputs_contract_v01(self):
+    def test_run_baseline_outputs_contract_v02(self):
         from triage.engine import run_baseline
 
         with tempfile.TemporaryDirectory() as td:
@@ -58,7 +59,7 @@ class TestRulesEngineBaseline(unittest.TestCase):
             lexicon_path = td_path / "lexicon.csv"
             out_path = td_path / "predictions.csv"
 
-            # Minimal v0.1 schema
+            # Minimal schema
             pd.DataFrame(
                 {"triage_note": ["no issues", "chest pain", "chest pain + shock"]}
             ).to_csv(notes_path, index=False)
@@ -76,6 +77,10 @@ class TestRulesEngineBaseline(unittest.TestCase):
 
             expected_cols = {
                 "engine_version",
+                "decision_id",
+                "timestamp_utc",
+                "input_hash",
+                "lexicon_hash",
                 "risk_level",
                 "risk_score",
                 "detected_red_flags",
@@ -84,6 +89,12 @@ class TestRulesEngineBaseline(unittest.TestCase):
                 "safety_notice",
             }
             self.assertTrue(expected_cols.issubset(set(df.columns)))
+
+            # Basic sanity for trace fields
+            self.assertTrue(df["decision_id"].astype(str).str.len().min() >= 32)
+            self.assertTrue(df["input_hash"].astype(str).str.fullmatch(r"[0-9a-f]{64}").all())
+            self.assertTrue(df["lexicon_hash"].astype(str).str.fullmatch(r"[0-9a-f]{64}").all())
+            self.assertTrue(df["timestamp_utc"].astype(str).str.contains("Z|\\+00:00").all())
 
             # Policy A: intermediate/high -> human contact
             self.assertEqual(df.loc[0, "risk_level"], "low")
@@ -95,6 +106,7 @@ class TestRulesEngineBaseline(unittest.TestCase):
             self.assertEqual(df.loc[2, "risk_level"], "high")
             self.assertTrue(bool(df.loc[2, "requires_human_contact"]))
 
+            # File written
             self.assertTrue(out_path.exists())
 
 
