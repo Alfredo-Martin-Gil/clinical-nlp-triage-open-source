@@ -47,8 +47,9 @@ experimental artifacts and must not be acted upon clinically.
 
 ## Current functional boundary
 
-The engine performs lowercase substring matching, hit counting, internal band
-assignment, and trace-field generation. It does not implement:
+The engine performs complete-word/phrase literal matching, hit counting,
+legacy internal band assignment, explicit signal-status/boundary metadata, and
+trace-field generation. It does not implement:
 
 - weighted scoring;
 - negation or temporal interpretation;

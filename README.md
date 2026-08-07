@@ -35,8 +35,8 @@ The authoritative implementation is:
 - `data/notes_synthetic.csv` — 180 synthetic English-language notes with
   project-assigned labels;
 - `data/lexicon_redflags.csv` — English-language term list;
-- `tests/test_rules_engine.py` — five software contract/smoke tests;
-- `.github/workflows/ci.yml` — unit-test and baseline-smoke workflow;
+- `tests/test_rules_engine.py` — nine software contract, boundary, and smoke tests;
+- `.github/workflows/ci.yml` — unit-test, baseline-smoke, and synthetic-evaluation workflow;
 - `docs/synthetic_baseline_evaluation_v0.1.md` — current synthetic benchmark
   report and interpretation limits.
 
@@ -44,19 +44,26 @@ The authoritative implementation is:
 
 For each note, the baseline:
 
-1. converts the text to lowercase;
-2. identifies lexicon terms by simple substring matching;
+1. normalizes text for case-insensitive comparison;
+2. identifies configured terms using complete-word/phrase literal matching;
 3. counts matched terms;
 4. maps the number of hits to an internal output band:
    - 0 hits → `low`;
    - 1 hit → `intermediate`;
    - 2 or more hits → `high`;
-5. records matched terms, hashes, timestamp, engine version, and a decision ID.
+5. records matched terms, hashes, timestamp, engine version, and a decision ID;
+6. marks whether any configured lexicon signal was detected and explicitly
+   states that clinical risk is not established.
 
 The current engine **does not implement** lexicon weighting, negation handling,
 temporal reasoning, past-history interpretation, semantic matching, or a
 validated uncertainty model. The `weight` column in the lexicon is not used by
 the authoritative engine.
+
+The legacy `risk_level` field is retained for output compatibility and only
+describes the count of configured lexical signals. A zero-hit `low` value is
+paired with `no_lexicon_signal_detected`, `clinical_risk_established=false`,
+mandatory human-review metadata, and a non-reassuring interpretation boundary.
 
 The output bands are experimental project categories. They are not validated
 clinical triage levels and must not be interpreted as evidence that a patient is
@@ -64,8 +71,11 @@ at low, intermediate, or high clinical risk.
 
 ## Current synthetic benchmark
 
-The baseline was reproduced against the 180 repository-provided synthetic notes
-at commit `0fa660b78992d4450ecd8e4f57569970e6057403`.
+The historical v0.2 baseline was reproduced against the 180
+repository-provided synthetic notes at commit
+`0fa660b78992d4450ecd8e4f57569970e6057403`. The v0.3 safety-coherence changes
+leave the synthetic band counts unchanged; they correct matching boundaries,
+output semantics, failure messaging, test coverage, and CI reproducibility.
 
 | Technical observation | Result |
 |---|---:|
@@ -127,6 +137,7 @@ Key documents:
 
 - `docs/baseline_scoring.md` — implemented scoring logic;
 - `docs/synthetic_baseline_evaluation_v0.1.md` — reproduced technical results;
+- `docs/c1_r2_safety_coherence_v0.1.md` — v0.3 technical change record;
 - `docs/clinical_safety_case_v0.1.md` — draft safety argument and evidence gaps;
 - `docs/context_of_use.md` — current research context and prohibited uses;
 - `docs/regulatory_positioning_v0.1.md` — exploratory regulatory considerations;

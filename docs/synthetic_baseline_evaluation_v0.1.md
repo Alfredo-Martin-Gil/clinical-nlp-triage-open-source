@@ -9,6 +9,13 @@ error patterns, and documentation–implementation inconsistencies.
 This report is **not clinical validation** and provides no evidence of safety,
 effectiveness, generalizability, or fitness for patient care.
 
+> **Version note:** Sections 2–9 preserve the historical v0.2 baseline at the
+> audited commit. C1-R2/v0.3 reproduces the same synthetic band metrics while
+> changing complete-word/phrase matching boundaries, removing reassuring
+> zero-hit language, adding explicit interpretation fields, expanding contract
+> tests, and running this evaluator in CI. These are safety-coherence and
+> reproducibility changes, not evidence of improved clinical performance.
+
 ## 2. Evaluated version
 
 - Repository: `Alfredo-Martin-Gil/clinical-nlp-triage-open-source`
@@ -45,8 +52,11 @@ python src/rules_engine.py --notes data/notes_synthetic.csv --lexicon data/lexic
 python scripts/evaluate_synthetic_baseline.py --predictions outputs/predictions.csv --json-out outputs/synthetic_metrics.json --entity-csv outputs/synthetic_by_entity.csv --errors-csv outputs/synthetic_errors.csv
 ```
 
-The five available tests passed during the 2026-08-07 reproduction. They test
-software contracts and smoke behaviour, not clinical validity.
+The five tests available at the audited v0.2 commit passed during the
+2026-08-07 reproduction. C1-R2 expands the suite to nine tests covering
+zero-hit failure messaging, incidental substrings, an explicit negation
+limitation, high-concern text with no lexical match, and the unused weight
+column. All remain software tests, not clinical validity evidence.
 
 ## 5. Main results
 
@@ -118,9 +128,10 @@ meaninglessness of hit count without contextual validation.
 
 - zero hits are converted to a `low` band rather than an unknown/unsupported
   state;
-- the generated low-band action may be interpreted as reassurance;
-- substring matching does not understand negation, timing, severity, history,
-  or synonyms;
+- the historical v0.2 low-band action may be interpreted as reassurance; v0.3
+  removes that wording but does not repair coverage;
+- literal matching does not understand negation, timing, severity, history, or
+  synonyms; v0.3 only removes incidental within-word substring matches;
 - the `weight` column creates an appearance of weighted scoring although it is
   unused;
 - internal labels resemble clinical risk levels;

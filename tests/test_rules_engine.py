@@ -87,6 +87,11 @@ class TestRulesEngineBaseline(unittest.TestCase):
                 "requires_human_contact",
                 "recommended_action",
                 "safety_notice",
+                "signal_status",
+                "clinical_risk_established",
+                "negation_handling",
+                "lexicon_columns_used",
+                "interpretation_boundary",
             }
             self.assertTrue(expected_cols.issubset(set(df.columns)))
 
@@ -96,9 +101,12 @@ class TestRulesEngineBaseline(unittest.TestCase):
             self.assertTrue(df["lexicon_hash"].astype(str).str.fullmatch(r"[0-9a-f]{64}").all())
             self.assertTrue(df["timestamp_utc"].astype(str).str.contains("Z|\\+00:00").all())
 
-            # Policy A: intermediate/high -> human contact
+            # Conservative compatibility policy: zero hits never implies reassurance.
             self.assertEqual(df.loc[0, "risk_level"], "low")
-            self.assertFalse(bool(df.loc[0, "requires_human_contact"]))
+            self.assertEqual(df.loc[0, "signal_status"], "no_lexicon_signal_detected")
+            self.assertTrue(bool(df.loc[0, "requires_human_contact"]))
+            self.assertFalse(bool(df.loc[0, "clinical_risk_established"]))
+            self.assertIn("does not establish low clinical risk", df.loc[0, "recommended_action"])
 
             self.assertEqual(df.loc[1, "risk_level"], "intermediate")
             self.assertTrue(bool(df.loc[1, "requires_human_contact"]))
@@ -108,6 +116,64 @@ class TestRulesEngineBaseline(unittest.TestCase):
 
             # File written
             self.assertTrue(out_path.exists())
+
+    def test_complete_word_matching_avoids_incidental_substrings(self):
+        from triage.engine import find_matched_terms
+
+        self.assertEqual(find_matched_terms("The patient is painting", ["pain"]), [])
+        self.assertEqual(find_matched_terms("The patient reports pain", ["pain"]), ["pain"])
+
+    def test_negated_mentions_are_detected_but_not_interpreted(self):
+        from triage.engine import run_baseline
+
+        with tempfile.TemporaryDirectory() as td:
+            td_path = Path(td)
+            notes_path = td_path / "notes.csv"
+            lexicon_path = td_path / "lexicon.csv"
+            out_path = td_path / "predictions.csv"
+            pd.DataFrame({"triage_note": ["No chest pain"]}).to_csv(notes_path, index=False)
+            pd.DataFrame({"term": ["chest pain"]}).to_csv(lexicon_path, index=False)
+
+            row = run_baseline(notes_path, lexicon_path, out_path).iloc[0]
+            self.assertEqual(row["risk_level"], "intermediate")
+            self.assertEqual(row["negation_handling"], "not_implemented")
+            self.assertFalse(bool(row["clinical_risk_established"]))
+            self.assertIn("not a clinical risk estimate", row["recommended_action"])
+
+    def test_unmatched_high_concern_text_does_not_reassure(self):
+        from triage.engine import run_baseline
+
+        with tempfile.TemporaryDirectory() as td:
+            td_path = Path(td)
+            notes_path = td_path / "notes.csv"
+            lexicon_path = td_path / "lexicon.csv"
+            out_path = td_path / "predictions.csv"
+            pd.DataFrame({"triage_note": ["Patient collapsed while walking upstairs"]}).to_csv(
+                notes_path, index=False
+            )
+            pd.DataFrame({"term": ["exertional syncope"]}).to_csv(lexicon_path, index=False)
+
+            row = run_baseline(notes_path, lexicon_path, out_path).iloc[0]
+            self.assertEqual(row["signal_status"], "no_lexicon_signal_detected")
+            self.assertTrue(bool(row["requires_human_contact"]))
+            self.assertIn("does not establish low clinical risk", row["recommended_action"])
+
+    def test_weight_column_is_not_used_by_v03(self):
+        from triage.engine import run_baseline
+
+        with tempfile.TemporaryDirectory() as td:
+            td_path = Path(td)
+            notes_path = td_path / "notes.csv"
+            lexicon_path = td_path / "lexicon.csv"
+            out_path = td_path / "predictions.csv"
+            pd.DataFrame({"triage_note": ["chest pain"]}).to_csv(notes_path, index=False)
+            pd.DataFrame({"term": ["chest pain"], "weight": [999]}).to_csv(
+                lexicon_path, index=False
+            )
+
+            row = run_baseline(notes_path, lexicon_path, out_path).iloc[0]
+            self.assertEqual(row["risk_score"], 1)
+            self.assertEqual(row["lexicon_columns_used"], "term")
 
 
 if __name__ == "__main__":

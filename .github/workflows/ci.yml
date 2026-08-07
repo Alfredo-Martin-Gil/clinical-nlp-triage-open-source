@@ -4,7 +4,7 @@ on:
   push:
     branches: ["main"]
   pull_request:
-    branches: ["main"]
+    branches: ["main", "c1-r1-credibility-repair"]
 
 jobs:
   test:
@@ -50,3 +50,23 @@ jobs:
             --notes data/notes_synthetic.csv \
             --lexicon data/lexicon_redflags.csv \
             --out outputs/predictions.csv
+
+      - name: Reproduce synthetic evaluation
+        run: |
+          python scripts/evaluate_synthetic_baseline.py \
+            --predictions outputs/predictions.csv \
+            --json-out outputs/synthetic_metrics.json \
+            --entity-csv outputs/synthetic_by_entity.csv \
+            --errors-csv outputs/synthetic_errors.csv
+
+      - name: Verify interpretation boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          metrics = json.loads(Path("outputs/synthetic_metrics.json").read_text())
+          assert metrics["dataset_type"] == "synthetic"
+          assert metrics["n"] == 180
+          assert "not clinical validation" in metrics["interpretation_boundary"].lower()
+          PY
