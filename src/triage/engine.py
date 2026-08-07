@@ -8,7 +8,7 @@ Design target:
 
 This baseline is intentionally simple (literal complete-word/phrase hits).
 
-v0.2 trace layer (certification-oriented, still deterministic):
+v0.2 trace layer (research traceability, still deterministic):
 - decision_id (uuid4 per row)
 - timestamp_utc (one timestamp per run)
 - input_hash (sha256 of raw input text)
