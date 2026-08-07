@@ -1,170 +1,35 @@
-# Hazard Model – v0.1
+# Research Hazard Register — v0.1
 
-## 1. Scope
+## Status and scope
 
-This document identifies potential hazards associated with the system described in `context_of_use.md`.
+This is a preliminary hazard-identification artifact for an offline research
+prototype using synthetic text. It is not a completed risk-management file,
+safety case, benefit-risk assessment, or authorization for patient use.
 
-The system is intended for adult patients in remote or medically underserved environments, used by non-medically trained individuals.
+There is no current intended patient population, clinical user, deployment
+setting, or remote/non-clinician use case.
 
-The purpose of this model is to identify life-threatening failure modes early in development.
+## Observed and foreseeable hazards
 
----
+| Hazard | Current evidence | Present control | Evidence gap |
+|---|---|---|---|
+| Missed configured signal | 38/84 synthetic `high` cases have zero hits | Explicit no-signal and no-clinical-risk boundary | Lexical coverage, independent labels, clinical evaluation |
+| False reassurance | v0.2 attached monitoring language to zero hits | v0.3 removes reassurance and makes review metadata conservative | Human-factors testing and removal of legacy risk-like labels |
+| Context error | Literal matching does not interpret negation, history, timing or severity | Limitation is machine-readable and documented | Tested contextual model and governed evaluation |
+| Incidental substring match | Possible in v0.2 | v0.3 complete-word/phrase boundaries plus test | Broader multilingual/tokenization tests |
+| Misleading weighted-scoring appearance | Lexicon contains unused `weight` | Output states only `term` is used | Schema redesign or tested weighting rationale |
+| Public-code misuse | Repository is publicly accessible | Prominent prohibited-use language | Misuse monitoring and organizational controls are absent |
 
-## 2. Worst-Case Harm
+## Current risk conclusion
 
-Worst credible harm:
+Residual clinical risk has not been estimated or accepted. Documentation and
+human oversight do not make the prototype suitable for patient care. No
+positive claim of safety, effectiveness, clinical validity, or acceptable risk
+is supported.
 
-> Delayed or absent escalation of a life-threatening condition resulting in preventable death.
+## Future work
 
-All system risks are evaluated against this outcome.
-
----
-
-## 3. Primary Hazard Categories
-
-### H1 – False Negative (Missed Critical Condition)
-
-Description:
-- The system fails to detect a high-risk condition.
-
-Examples:
-- Undetected cardiac event
-- Undetected severe hypoxia
-- Undetected hemorrhage
-
-Potential Harm:
-- Delay in emergency escalation
-- Increased mortality
-
-Mitigation Strategy (v0.x):
-- Conservative escalation policy (intermediate/high → human contact)
-- Deterministic baseline logic
-- Traceability of decisions
-- Future redundancy in sensor + symptom channels
-
----
-
-### H2 – False Positive (Over-escalation)
-
-Description:
-- The system escalates non-critical cases.
-
-Potential Harm:
-- Resource misuse
-- Panic
-- System distrust
-
-Severity:
-- Low compared to H1
-- Acceptable bias toward safety in early stages
-
-Mitigation:
-- Conservative messaging
-- Clear explanation layer
-- Human override always allowed
-
----
-
-### H3 – Incorrect Recommendation
-
-Description:
-- The system outputs misleading action guidance.
-
-Examples:
-- Recommends monitoring when urgent care is needed
-- Provides ambiguous language
-
-Mitigation:
-- Strict non-diagnostic positioning
-- Escalation-based output only
-- No treatment or dosing advice
-
----
-
-### H4 – Technical Failure
-
-Description:
-- Crash
-- Network failure
-- Partial sensor malfunction
-- Data corruption
-
-Potential Harm:
-- Loss of guidance in critical moment
-
-Mitigation:
-- Fail-safe messaging
-- Offline fallback (future phase)
-- Clear “system unavailable” state
-- No silent failure
-
----
-
-### H5 – Sensor Misinterpretation (Future Device Phase)
-
-Description:
-- Incorrect heart rate detection
-- False SpO2 reading
-- Noise interpreted as signal
-- Visual misclassification
-
-Potential Harm:
-- False reassurance
-- False alarm
-
-Mitigation (future):
-- Multi-signal redundancy
-- Confidence scoring
-- Sensor validation layer
-- Explicit uncertainty display
-
----
-
-### H6 – User Misuse
-
-Description:
-- Incorrect device placement
-- Incomplete answers
-- Language misunderstanding
-
-Potential Harm:
-- Garbage-in → incorrect escalation
-
-Mitigation:
-- Guided interaction
-- Voice clarification
-- Instruction layer
-- Future usability validation studies
-
----
-
-## 4. Risk Philosophy
-
-The system prioritizes:
-
-- Avoiding false negatives over false positives
-- Escalation over reassurance
-- Determinism over opaque inference (early phases)
-- Auditability over performance
-
----
-
-## 5. Development Constraints
-
-No real-world deployment is permitted until:
-
-- Hazard mitigation strategies are documented
-- Supervised validation phase completed
-- Governance framework established
-- Legal review conducted
-
----
-
-## 6. Next Phase
-
-The next development phase must integrate:
-
-- Hazard-to-feature traceability
-- Explicit failure state behavior
-- Escalation audit logging
-- Sensor validation protocols (future hardware phase)
+Any future study involving users or patient data would require a defined
+context of use, accountable sponsor, ethics/privacy review, verified hazard
+controls, independent clinical evaluation, human-factors testing, security
+assessment, and jurisdiction-specific regulatory analysis.

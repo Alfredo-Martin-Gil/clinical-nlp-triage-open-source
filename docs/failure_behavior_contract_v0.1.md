@@ -1,139 +1,45 @@
-# Failure Behavior Contract – v0.1
+# Failure-Behaviour Requirements Draft — v0.1
 
-## 1. Scope
+## Status
 
-This document defines how the system behaves under failure conditions.
+This document is **requirements and governance scaffolding for future
+research**. It does not describe implemented failure handling. The current
+v0.3 prototype processes synthetic text offline and has no sensors, cloud
+model, uncertainty engine, patient interface, or authorized clinical use.
 
-Given the intended use in remote and resource-limited environments, silent failure is considered unacceptable.
+## Current implemented behaviour
 
-Failure behavior must always be explicit and visible to the user.
+- malformed CSV schemas raise an error;
+- literal configured-term matches are counted;
+- zero hits produce `no_lexicon_signal_detected`;
+- every row states that clinical risk is not established and patient use is
+  prohibited;
+- negation handling is explicitly marked `not_implemented`.
 
----
+The engine does not detect missing clinical information, data corruption,
+sensor failure, service degradation, or high clinical uncertainty.
 
-## 2. Failure Philosophy
+## Candidate requirements for future research
 
-The system follows an adaptive failure policy based on environmental constraints.
+A future version would need verified requirements for:
 
-Primary principle:
+1. explicit invalid-input and degraded-state outputs;
+2. separation of no detected signal from evidence of absence;
+3. no automatic downgrade when required information is missing;
+4. traceable failure reason codes;
+5. conservative stopping behaviour when an output cannot be supported;
+6. human-factors testing of warnings and abandonment behaviour.
 
-> The system must never fail silently.
-> The system must never imply safety if uncertainty is high.
+## Prohibited interpretation
 
-Failure response depends on availability of external medical assistance.
+This draft must not be cited as evidence that failure controls are implemented,
+effective, safe, validated, or suitable for remote or resource-limited use.
 
----
+## Evidence needed
 
-## 3. Failure Context Categories
-
-### F1 – External Medical Access Available
-
-If external medical support is accessible (even with delay):
-
-System behavior:
-- Immediately escalate.
-- Display: "System integrity compromised. Seek medical assistance immediately."
-- Stop automated risk scoring.
-
-Rationale:
-When assistance is possible, conservative escalation minimizes harm.
-
----
-
-### F2 – No Medical Access Available (Isolated Environment)
-
-Examples:
-- Maritime vessel
-- Remote expedition
-- Rural area without reachable services
-
-System behavior:
-- Explicitly inform user that system reliability is degraded.
-- Continue processing with available data.
-- Display high uncertainty warning:
-  "Limited system reliability. Recommendations may be incomplete."
-
-- Escalation bias increases.
-- Risk level cannot downgrade due to missing signals.
-- Missing data increases uncertainty weighting.
-
-Rationale:
-In total isolation, partial guidance may be preferable to none,
-but only with explicit risk disclosure.
-
----
-
-## 4. Technical Failure Types
-
-### T1 – Sensor Failure
-
-- Sensor signal out of range
-- Signal unavailable
-- Sensor disconnected
-
-Behavior:
-- Flag specific sensor as unreliable
-- Exclude from confidence weighting
-- Increase overall uncertainty
-- Never assume normal value
-
----
-
-### T2 – AI Service Failure (Future Cloud Model)
-
-- Timeout
-- Model unreachable
-- API error
-
-Behavior:
-- Fallback to deterministic core engine
-- Notify user of reduced capability
-- Log failure event
-
----
-
-### T3 – Data Corruption
-
-- Malformed input
-- Inconsistent timestamps
-- Impossible values (e.g., HR = 0 while conscious)
-
-Behavior:
-- Reject corrupted values
-- Flag inconsistency
-- Trigger conservative escalation if ambiguity persists
-
----
-
-## 5. Uncertainty Handling
-
-The system must make uncertainty visible.
-
-Uncertainty sources:
-- Missing data
-- Conflicting signals
-- Sensor noise
-- Partial processing
-
-Future requirement:
-- Introduce explicit confidence score
-- Display confidence tier (High / Moderate / Low)
-
----
-
-## 6. Prohibited Behavior
-
-The system must never:
-
-- Auto-downgrade risk due to missing signals
-- Suppress warnings
-- Hide degraded state
-- Present normality assumptions
-
----
-
-## 7. Development Constraint
-
-No hardware integration or multimodal AI integration is permitted
-until failure behavior is defined and tested in simulation.
-
-Failure logic must be implemented before advanced features.
+- implemented requirements linked to tests;
+- predefined acceptance criteria;
+- adversarial and boundary-case evaluation;
+- clinical and human-factors review;
+- representative, governed data and independent reference processes;
+- change-control and residual-risk decisions by accountable organizations.

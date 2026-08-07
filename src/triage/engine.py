@@ -1,12 +1,12 @@
 """
-Core orchestration for the baseline triage engine (v0.1).
+Core orchestration for the research baseline engine.
 
 Design target:
-- Non-clinical users
-- Deterministic, auditable, explainable
-- Always escalate to human contact for intermediate/high
+- Offline research and software testing only
+- Deterministic, auditable lexical signal detection
+- Explicitly non-clinical outputs and conservative failure messaging
 
-This baseline is intentionally simple (lexicon substring hits).
+This baseline is intentionally simple (literal complete-word/phrase hits).
 
 v0.2 trace layer (certification-oriented, still deterministic):
 - decision_id (uuid4 per row)
@@ -27,33 +27,41 @@ import uuid
 import pandas as pd
 
 from triage.lexicon import normalize_terms
+from triage.scoring import find_matched_terms as _find_matched_terms
+from triage.scoring import predict_label_from_hits
 
-ENGINE_VERSION = "0.2.0"
+ENGINE_VERSION = "0.3.0"
+INTERPRETATION_BOUNDARY = (
+    "Lexical signal-count output only; clinical risk is not established. "
+    "Research use with synthetic data only. Not for patient decisions."
+)
 
 
 @dataclass(frozen=True)
 class RiskPolicy:
     """
-    v0.x escalation policy for non-clinical users.
+    Conservative research-output messaging.
 
-    Rule A:
-    - intermediate/high -> always requires human contact
+    ``requires_human_contact`` is retained for backward compatibility and is
+    always true so a zero-hit output cannot be interpreted as reassurance.
     """
     low_action: str = (
-        "Low risk signal. Monitor symptoms. If symptoms worsen or you are concerned, "
-        "contact a healthcare professional."
+        "No configured lexicon signal detected. This does not establish low clinical risk. "
+        "Do not use this output for patient decisions; clinical review is required for any "
+        "real-world concern."
     )
     intermediate_action: str = (
-        "Intermediate risk signal. Contact a healthcare professional as soon as possible."
+        "One configured lexicon signal was detected. This is not a clinical risk estimate "
+        "and must not be used for patient decisions."
     )
     high_action: str = (
-        "High risk signal. Seek urgent medical attention immediately. "
-        "Call emergency services if necessary."
+        "Multiple configured lexicon signals were detected. This is not a clinical risk "
+        "estimate and must not be used for patient decisions."
     )
 
     safety_notice: str = (
-        "This is an experimental research/prototype system. It does not diagnose or treat. "
-        "Do not use it as a substitute for professional medical judgment."
+        "Experimental research prototype using synthetic data. It does not diagnose, "
+        "triage or establish clinical risk. Do not use it for real-patient decisions."
     )
 
 
@@ -70,32 +78,27 @@ def _lexicon_hash(terms: List[str]) -> str:
 
 def find_matched_terms(text: str, terms: List[str]) -> List[str]:
     """
-    Return lexicon terms present in text using simple substring matching (v0.x).
+    Backward-compatible wrapper around the authoritative scoring primitive.
     """
-    s = str(text).lower()
-    return [t for t in terms if t and (t in s)]
+    return _find_matched_terms(text, terms)
 
 
 def hits_to_risk_level(hits: int) -> str:
     """
-    v0.x mapping: count hits -> risk level.
+    Backward-compatible mapping to the legacy technical signal-count band.
     """
-    if hits >= 2:
-        return "high"
-    if hits == 1:
-        return "intermediate"
-    return "low"
+    return predict_label_from_hits(hits)
 
 
 def apply_policy(risk_level: str, policy: RiskPolicy) -> tuple[bool, str]:
     """
-    Return (requires_human_contact, recommended_action) for the given risk_level.
+    Return conservative compatibility output and non-clinical message.
     """
     if risk_level == "high":
         return True, policy.high_action
     if risk_level == "intermediate":
         return True, policy.intermediate_action
-    return False, policy.low_action
+    return True, policy.low_action
 
 
 def run_baseline(
@@ -108,7 +111,7 @@ def run_baseline(
     """
     Run baseline engine and write predictions to out_path.
 
-    Output contract (v0.2):
+    Output contract (v0.3):
     - engine_version
     - decision_id
     - timestamp_utc
@@ -120,6 +123,11 @@ def run_baseline(
     - requires_human_contact
     - recommended_action
     - safety_notice
+    - signal_status
+    - clinical_risk_established
+    - negation_handling
+    - lexicon_columns_used
+    - interpretation_boundary
     """
     policy = policy or RiskPolicy()
 
@@ -148,6 +156,9 @@ def run_baseline(
     notes["_matched_terms"] = notes[text_column].apply(lambda t: find_matched_terms(t, terms))
     notes["risk_score"] = notes["_matched_terms"].apply(len)
     notes["risk_level"] = notes["risk_score"].apply(hits_to_risk_level)
+    notes["signal_status"] = notes["risk_score"].apply(
+        lambda hits: "no_lexicon_signal_detected" if hits == 0 else "lexicon_signal_detected"
+    )
 
     # Policy outputs
     policy_out = notes["risk_level"].apply(lambda r: apply_policy(r, policy))
@@ -157,6 +168,10 @@ def run_baseline(
     # Explainability / trace
     notes["detected_red_flags"] = notes["_matched_terms"].apply(lambda xs: "|".join(xs))
     notes["safety_notice"] = policy.safety_notice
+    notes["clinical_risk_established"] = False
+    notes["negation_handling"] = "not_implemented"
+    notes["lexicon_columns_used"] = "term"
+    notes["interpretation_boundary"] = INTERPRETATION_BOUNDARY
 
     # Cleanup internal column
     notes.drop(columns=["_matched_terms"], inplace=True)

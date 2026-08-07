@@ -1,124 +1,40 @@
-# Uncertainty Model – v0.1
+# Uncertainty Model Proposal — v0.1
 
-## 0. Relationship to Clinical Uncertainty (Repository Positioning)
+## Status
 
-This document defines the **operational** uncertainty model used by the system (thresholds, blocking behavior, and user warnings).
+This is a conceptual proposal. The current engine does **not** compute an
+uncertainty score or level, infer missing clinical data, block decisions based
+on uncertainty, or integrate sensor/model confidence.
 
-It **implements** the repository’s conceptual positioning described in:
-- `docs/clinical_uncertainty.md`
+The implemented v0.3 fields are limited to:
 
-In short:
-- `clinical_uncertainty.md` explains *why uncertainty is the default state in real clinical work*.
-- This document defines *what the system does when uncertainty is high*.
+- `signal_status` — whether configured lexicon terms were detected;
+- `clinical_risk_established=false` — a fixed interpretation boundary;
+- `negation_handling=not_implemented`;
+- `interpretation_boundary` — research-only, no-patient-use statement.
 
----
+These fields are not an uncertainty model.
 
-## 1. Purpose
+## Candidate uncertainty sources for future research
 
-This document defines how uncertainty is modeled, quantified, and handled within the system.
+- incomplete or ambiguous symptom text;
+- lexical non-coverage;
+- negation, temporal, severity and history context;
+- conflicting structured and unstructured information;
+- distribution shift and language variation;
+- missing data and unreliable input channels.
 
-Given the intended use in remote and medically isolated environments, unmanaged uncertainty represents a direct mortality risk.
+## Candidate requirements
 
----
+A future uncertainty mechanism would require a defined construct, traceable
+drivers, pre-specified thresholds, conservative unsupported-output behaviour,
+calibration and subgroup evaluation, and human-factors testing. Uncertainty
+must not be converted into reassurance or presented as confidence without
+supporting evidence.
 
-## 2. Core Principle
+## Prohibited interpretation
 
-> High uncertainty must never be silently converted into reassurance.
-
-Uncertainty is considered a first-class variable in decision-making.
-
----
-
-## 3. Sources of Uncertainty
-
-Uncertainty may arise from:
-
-- Missing sensor signals
-- Conflicting physiological inputs
-- Incomplete symptom reporting
-- Data corruption
-- AI service degradation
-- Environmental constraints
-- User misuse
-
----
-
-## 4. Uncertainty Categories
-
-### U1 – Low Uncertainty
-- Complete data
-- Consistent signals
-- Deterministic match
-
-System behavior:
-- Proceed with normal escalation logic
-
----
-
-### U2 – Moderate Uncertainty
-- Minor missing data
-- Limited signal noise
-- Partial symptom input
-
-System behavior:
-- Escalation bias increased
-- Uncertainty visibly displayed
-- Decision allowed
-
----
-
-### U3 – High Uncertainty (Critical Threshold)
-
-Triggers:
-- Major missing physiological signals
-- Conflicting critical indicators
-- Sensor reliability compromised
-- AI fallback engaged during critical evaluation
-- Incomplete triage in high-risk scenario
-
-System behavior:
-- Automatic decision blocked
-- Clear warning displayed:
-
-  "System uncertainty is critically high.
-   Continuing may result in incorrect guidance.
-   Incorrect guidance in this context may contribute to death."
-
-- User must explicitly confirm continuation.
-- If medical assistance is available → escalate immediately.
-- If no assistance is available → allow guarded continuation with explicit degraded-state flag.
-
----
-
-## 5. Uncertainty Handling Policy
-
-- Uncertainty cannot reduce risk level.
-- Missing data increases uncertainty weight.
-- Uncertainty does not auto-downgrade escalation.
-- Uncertainty must be logged in decision trace.
-
----
-
-## 6. Future Implementation Requirements
-
-- Introduce explicit `uncertainty_score`
-- Introduce `uncertainty_level` (Low / Moderate / High)
-- Integrate uncertainty with failure behavior contract
-- Log uncertainty drivers in trace layer
-
----
-
-## 7. Ethical Constraint
-
-The system must never:
-
-- Hide uncertainty
-- Convert uncertainty into normal classification
-- Present probabilistic output as deterministic certainty
-
----
-
-## 8. Development Constraint
-
-No multimodal integration (wearables, video AI, external LLM) may occur
-without uncertainty modeling integrated into the decision engine.
+This proposal does not show that uncertainty is measured, controlled, visible
+to users, or clinically meaningful. It must not be used to claim an implemented
+uncertainty layer, safe failure behaviour, remote-use suitability, or clinical
+readiness.

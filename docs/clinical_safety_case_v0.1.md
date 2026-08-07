@@ -49,7 +49,7 @@ These are proposed objectives, not achieved properties.
 | Topic | Evidence currently present | Evidence still required |
 |---|---|---|
 | Software traceability | Version, timestamp, input/lexicon hashes, decision ID | Independent verification and lifecycle controls |
-| Software contract | Five unit/smoke tests | Clinical-rule tests, boundary tests, regression suite |
+| Software contract | Nine unit, boundary and smoke tests | Independent verification, broader contextual tests, regression suite |
 | Synthetic performance | 180-case benchmark and error analysis | Frozen protocol, independent label review, representative case design |
 | High-risk failure behaviour | 38 synthetic `high`→`low` errors identified | Corrective implementation and pre-specified acceptance criteria |
 | Human oversight | Documentation statements | Usability, comprehension, workload and behavioural testing |
@@ -59,11 +59,12 @@ These are proposed objectives, not achieved properties.
 ## Open hazards
 
 - lexical non-coverage producing zero hits;
-- substring matching without contextual interpretation;
+- literal matching without negation, temporal, severity or history interpretation;
 - no negation or temporal reasoning;
 - unused lexicon weights;
 - experimental bands that resemble clinical risk categories;
-- monitoring-oriented text attached to zero-hit outputs;
+- legacy risk-like labels remain, although v0.3 removes monitoring-oriented
+  zero-hit text and adds explicit no-signal boundaries;
 - incomplete coverage across clinical entities;
 - documentation that previously exceeded the implemented evidence;
 - potential misuse of public code outside its research boundary.
