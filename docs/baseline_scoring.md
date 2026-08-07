@@ -1,98 +1,86 @@
-# Baseline Scoring (v0.1)
+# Baseline Scoring — Implemented Logic v0.2.0
 
-This document describes the **current v0.1 baseline** implemented in code under:
+## Status and boundary
 
-- `src/triage/engine.py` (core)
-- `src/rules_engine.py` (CLI)
+This document describes the authoritative baseline implemented in
+`src/triage/engine.py` and exposed by `src/rules_engine.py` at commit
+`0fa660b78992d4450ecd8e4f57569970e6057403`.
 
-The v0.1 baseline is intentionally simple, transparent, deterministic, and designed for:
+It is a software-behaviour description, not a clinical specification. The
+output bands are experimental project categories and must not be interpreted as
+validated clinical risk or triage levels.
 
-- **non-clinical users**
-- **risk escalation**
-- **human contact required** for **intermediate/high** risk
+## Inputs
 
-> ⚠️ Clinical safety notice  
-> This is a research/prototype baseline. It does not diagnose or treat.  
-> Do not use it as a substitute for professional medical judgment.
+Notes require a text column. The CLI accepts `triage_note` and falls back to
+`text` for the repository dataset. The lexicon requires a `term` column.
 
----
+The repository dataset contains synthetic English-language notes. No real
+patient data are included in the current benchmark.
 
-## 1. Purpose
+## Matching logic
 
-Provide an interpretable **risk escalation signal** from free-text notes by:
+For each note, the engine:
 
-- Detecting red-flag terms (substring matching)
-- Counting detected red flags (hits)
-- Mapping hits to a coarse risk level
-- Producing safe, conservative recommended actions
+1. converts the note to lowercase;
+2. checks whether each normalized lexicon term occurs as a substring;
+3. returns the set of matched lexicon terms.
 
----
+The current implementation does not use token boundaries, semantic similarity,
+negation, temporal context, patient history, or the lexicon `weight` field.
 
-## 2. Inputs
+## Score computation
 
-### Notes
-Expected column:
+`risk_score` equals the number of matched lexicon terms.
 
-- `triage_note`
+## Internal band mapping
 
-### Lexicon
-Expected column:
+- 0 hits → `low`;
+- 1 hit → `intermediate`;
+- 2 or more hits → `high`.
 
-- `term`
+This mapping is an experimental software rule. It has not been shown to
+represent clinical severity, urgency, or outcome risk.
 
----
+## Output contract
 
-## 3. Matching Logic (v0.1)
+The engine produces:
 
-For each note:
+- `engine_version`;
+- `decision_id`;
+- `timestamp_utc`;
+- `input_hash`;
+- `lexicon_hash`;
+- `risk_level`;
+- `risk_score`;
+- `detected_red_flags`;
+- `requires_human_contact`;
+- `recommended_action`;
+- `safety_notice`.
 
-- Convert text to lowercase
-- For each lexicon term:
-  - Check if term appears as substring
-- Collect matched terms (traceable output)
+Trace fields support reproducibility and error analysis. They do not demonstrate
+clinical explainability, safety, or accountability.
 
----
+## Known failure behaviour
 
-## 4. Score Computation (v0.1)
+On the repository-provided 180-case synthetic set, 106 cases receive zero hits.
+Thirty-eight of those zero-hit cases carry a project-assigned `high` label. The
+current engine maps zero hits to `low` and emits a monitoring-oriented action.
+That behaviour is incompatible with patient use and is a documented technical
+safety blocker.
 
-- `risk_score` = number of matched terms (hits)
+See `synthetic_baseline_evaluation_v0.1.md` for detailed results.
 
----
+## Roadmap, not current functionality
 
-## 5. Score → Risk Level Mapping (v0.1)
+The following are future technical proposals only:
 
-- hits >= 2 → `high`
-- hits == 1 → `intermediate`
-- hits == 0 → `low`
+- lexicon weighting;
+- negation handling;
+- temporal and history reasoning;
+- matched-span metadata;
+- uncertainty gating;
+- clinically reviewed escalation policies.
 
----
-
-## 6. Escalation Policy (Non-clinical users)
-
-- `intermediate` or `high` → **requires_human_contact = true**
-- `low` → **requires_human_contact = false**
-
-Recommended actions are conservative and escalation-oriented.
-
----
-
-## 7. Output Contract (v0.1)
-
-The baseline produces:
-
-- `engine_version`
-- `risk_level`
-- `risk_score`
-- `detected_red_flags` (pipe-separated terms)
-- `requires_human_contact`
-- `recommended_action`
-- `safety_notice`
-
----
-
-## 8. Roadmap Note
-
-More advanced features (weights, negation handling, temporal/history heuristics, matched term metadata)
-will be introduced in later versions (v0.2+), with tests and metric protocols.
-
-Notebooks remain exploratory and must not be treated as the authoritative baseline.
+None should be described as implemented until code, tests, and evaluation
+evidence exist in the same version.

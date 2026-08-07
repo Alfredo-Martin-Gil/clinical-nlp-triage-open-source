@@ -1,136 +1,100 @@
-# Clinical Safety Case – v0.1
+# Draft Clinical Safety Argument and Evidence Gaps — v0.1
 
-## 1. Safety Goal
+## Document status
 
-The system is acceptably safe for its intended use as a structured clinical decision support tool in environments without immediate physician access.
+This is a **research-stage safety argument template**. It is not a completed
+safety case and does not establish that the prototype is safe, clinically
+beneficial, fit for an intended use, or suitable for regulatory submission.
 
-The system does not claim diagnostic authority or autonomous treatment capability.
+The present evidence supports only software traceability and synthetic error
+analysis. It does not support claims of acceptable residual risk or risk
+reduction.
 
----
+## Current safety conclusion
 
-## 2. Top-Level Safety Claim
+No positive clinical safety claim can be made for the current baseline.
 
-The system reduces risk compared to absence of structured guidance in isolated environments, without introducing unacceptable additional risk.
+The repository-provided synthetic benchmark identified a material failure mode:
+38 of 84 cases labelled `high` were assigned the internal `low` band. Exact-band
+sensitivity for the synthetic `high` label was 10/84 (11.9%). These figures are
+not clinical performance estimates, but they are sufficient to prohibit patient
+use and to invalidate reassurance-oriented interpretations of zero-hit outputs.
 
----
+## Restricted claim
 
-## 3. Supporting Safety Claims
+The current defensible claim is:
 
-### Claim 1: The system does not introduce autonomous clinical authority.
+> The repository documents an auditable research prototype and a structured
+> process for identifying hazards, implementation–documentation gaps, and
+> evidence requirements using synthetic data.
 
-Evidence:
-- Regulatory Positioning Document
-- Software Lifecycle Procedure
-- Change Control Procedure
+This claim does not imply that hazards are controlled.
 
----
+## Candidate safety objectives for future research
 
-### Claim 2: The system explicitly models and communicates uncertainty.
+Future versions may be evaluated against objectives such as:
 
-Evidence:
-- Clinical Uncertainty Document
-- Uncertainty Model
-- Escalation Behavior Definition
+1. avoid false reassurance when critical information is absent;
+2. make uncertainty and missing information visible;
+3. prevent unsupported low-risk interpretations;
+4. maintain traceability between inputs, rules, outputs, and versions;
+5. preserve human review without treating human oversight as a substitute for
+   model performance;
+6. define and test safe failure behaviour before any user-facing study.
 
----
+These are proposed objectives, not achieved properties.
 
-### Claim 3: High-severity risks are identified and mitigated.
+## Evidence map
 
-Evidence:
-- Hazard Model
-- Risk Management Procedure
-- Escalation Triggers
-- Blocking Mechanisms
+| Topic | Evidence currently present | Evidence still required |
+|---|---|---|
+| Software traceability | Version, timestamp, input/lexicon hashes, decision ID | Independent verification and lifecycle controls |
+| Software contract | Five unit/smoke tests | Clinical-rule tests, boundary tests, regression suite |
+| Synthetic performance | 180-case benchmark and error analysis | Frozen protocol, independent label review, representative case design |
+| High-risk failure behaviour | 38 synthetic `high`→`low` errors identified | Corrective implementation and pre-specified acceptance criteria |
+| Human oversight | Documentation statements | Usability, comprehension, workload and behavioural testing |
+| Residual risk | None | Hazard-control verification and benefit–risk assessment |
+| Clinical performance | None | Appropriately governed retrospective/prospective evidence |
 
----
+## Open hazards
 
-### Claim 4: The system prioritizes escalation over reassurance in ambiguous scenarios.
+- lexical non-coverage producing zero hits;
+- substring matching without contextual interpretation;
+- no negation or temporal reasoning;
+- unused lexicon weights;
+- experimental bands that resemble clinical risk categories;
+- monitoring-oriented text attached to zero-hit outputs;
+- incomplete coverage across clinical entities;
+- documentation that previously exceeded the implemented evidence;
+- potential misuse of public code outside its research boundary.
 
-Evidence:
-- Risk Governance Principle
-- Conservative Framing Rules
-- Failure Behavior Contract
+## Human responsibility
 
----
+The prototype must not be used for patient care. A human-in-the-loop statement
+does not make an unvalidated system safe and does not transfer responsibility
+away from developers, investigators, institutions, or users.
 
-### Claim 5: Missing critical data triggers warnings or blocking.
+Any future human-factors claim requires evidence that intended users understand
+warnings, do not over-trust outputs, and respond appropriately under realistic
+workflow conditions.
 
-Evidence:
-- Failure Behavior Contract
-- Risk Management Procedure
-- Software Lifecycle Procedure
+## Conditions before a future safety case
 
----
+A future safety case would require, at minimum:
 
-## 4. Hazard Mitigation Mapping
+- a defined and justified context of use;
+- controlled requirements and configuration;
+- verified hazard controls linked to implementation;
+- a frozen evaluation protocol and acceptance criteria;
+- independently reviewed reference labels;
+- clinically relevant performance and error analysis;
+- human-factors evidence;
+- privacy, ethics, security, and jurisdiction-specific regulatory review;
+- documented residual-risk and benefit–risk decisions by accountable parties.
 
-Each hazard documented in the Hazard Model must:
+## Regulatory boundary
 
-- Identify mitigation mechanism
-- Reference code implementation
-- Reference uncertainty handling
-- Reference escalation logic
-
-No hazard may remain unmitigated without explicit residual risk justification.
-
----
-
-## 5. Residual Risk Justification
-
-Residual risk is considered acceptable when:
-
-- The system provides safer guidance than no structured intervention.
-- The system does not overstate certainty.
-- The system escalates in high-risk patterns.
-- The system clearly communicates limitations.
-
-In extreme isolation scenarios, residual risk may remain high; however, absence of structured guidance presents greater risk.
-
----
-
-## 6. Human Responsibility Retention
-
-The system:
-
-- Requires human acknowledgment.
-- Does not override human judgment.
-- Does not claim medical authority.
-- Does not guarantee survival.
-
-Responsibility remains human.
-
----
-
-## 7. Safety Boundary Conditions
-
-The system must not:
-
-- Minimize severe red flags.
-- Suppress escalation signals.
-- Provide deterministic diagnostic conclusions.
-- Continue without warning when critical inputs are missing.
-
-Violation of these boundaries invalidates this safety case.
-
----
-
-## 8. Ongoing Safety Assurance
-
-Any Major Change requires:
-
-- Hazard model update
-- Risk reassessment
-- Safety case revision
-
-The safety case is invalid if documentation lags behind implementation.
-
----
-
-## 9. Certification Pathway Intent
-
-This safety case structure is designed to support:
-
-- ANMAT submission (Argentina)
-- Health Canada SaMD review
-
-It follows argument-based safety reasoning aligned with medical device expectations.
+This draft is not aligned evidence of conformity with ISO 14971, IEC 62304,
+ISO 13485, IMDRF guidance, ANMAT requirements, or Health Canada requirements.
+Those sources may inform future gap analysis only after intended use and product
+claims are defined with qualified regulatory input.

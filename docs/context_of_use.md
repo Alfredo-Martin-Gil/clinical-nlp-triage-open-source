@@ -1,134 +1,75 @@
-# Context of Use – v0.1
+# Research Context and Prohibited Use — v0.1
 
-## 1. Deployment Jurisdiction (Initial)
+## Current context
 
-Primary target for first real-world deployment:
-- Argentina
+The current artifact is a repository-based research and educational prototype
+executed on synthetic English-language text. It is intended for:
 
-Future expansion considered:
-- Canada
+- software behaviour inspection;
+- synthetic error analysis;
+- clinical knowledge-structuring research;
+- evaluation-method design;
+- discussion of traceability, human oversight, and governance boundaries.
 
-This document is written to remain compatible with future certification pathways in both jurisdictions.
+There is no authorized clinical deployment jurisdiction, healthcare setting,
+intended patient population, or patient-facing user group for v0.x.
 
----
+## Prohibited use
 
-## 2. Intended Environment
+The prototype must not be used to:
 
-The system is intended for use in environments where there is no immediate access to a physician.
+- assess or triage a real patient;
+- diagnose, exclude, or estimate the probability of disease;
+- reassure a patient or caregiver;
+- recommend treatment, medication, transport, or disposition;
+- replace emergency services, local protocols, medical direction, or clinical
+  judgement;
+- support unsupervised use by non-medically trained individuals;
+- operate in rural, remote, maritime, offshore, ambulance, emergency-department,
+  hospital, or home-care workflows;
+- process identifiable or real patient data;
+- claim deployment, clinical validation, or regulatory status.
 
-Examples include:
-- Rural or remote areas
-- Maritime settings (boats, offshore)
-- Resource-limited zones
-- Locations with geographic isolation
-- Areas with delayed emergency response times
+## Current users
 
-Internet connectivity may be available for model access and updates, but the system is designed for scenarios where direct physician interaction is not immediately accessible.
+Current users are limited to reviewers examining the repository for research,
+education, software testing, or portfolio assessment. Generated outputs are
+experimental artifacts and must not be acted upon clinically.
 
----
+## Current data boundary
 
-## 3. Intended User
+- Data type: synthetic text created for this repository.
+- Language: English in the current dataset and lexicon.
+- Population: no validated patient population; labels are project-assigned
+  synthetic reference categories.
+- Privacy: absence of patient data does not remove the need for future privacy,
+  ethics, and data-governance review.
 
-Primary intended user:
-- Non-medically trained individuals
+## Current functional boundary
 
-Examples:
-- Community members
-- Caregivers
-- Individuals assisting a patient in remote locations
+The engine performs lowercase substring matching, hit counting, internal band
+assignment, and trace-field generation. It does not implement:
 
-Early implementation stages may include supervised pilot usage with medical oversight.
+- weighted scoring;
+- negation or temporal interpretation;
+- diagnostic reasoning;
+- clinically validated escalation;
+- uncertainty blocking;
+- sensor, voice, image, wearable, ECG, oximetry, or auscultation input;
+- remote professional review;
+- a patient-facing interface.
 
----
+## Future context-of-use work
 
-## 4. Intended Population
+Rural, remote, prehospital, professional, or patient-facing contexts remain
+research questions only. They must not be selected as an intended use until a
+future version has:
 
-- Adults only (≥18 years)
+1. a clearly defined problem, user, environment, population, and workflow;
+2. clinical, human-factors, privacy, security, ethics, and regulatory review;
+3. verified requirements and hazard controls;
+4. a justified reference standard and evaluation protocol;
+5. evidence sufficient to decide whether research with users or patient data is
+   appropriate.
 
-Pediatric use is explicitly excluded in v0.x and would require a separate validation pathway.
-
----
-
-## 5. System Objective
-
-The core objective of the system is:
-
-> To provide a survival opportunity to individuals who would otherwise lack technical medical guidance in time-critical situations.
-
-The system aims to detect high-risk clinical signals and escalate appropriately.
-
----
-
-## 6. Functional Scope (Current Vision)
-
-The system is envisioned as a multimodal decision-support platform that may include:
-
-- Text input (symptom description)
-- Voice interaction (patient or assistant)
-- Wearable or garment-based sensor interface (future phase)
-    - Heart rate
-    - Oxygen saturation
-    - ECG
-    - Digital auscultation
-- Visual input (camera/video feed)
-    - Remote professional review
-    - AI-assisted contextual interpretation (future phase)
-
-Initial versions focus on structured risk escalation logic.
-
----
-
-## 7. Escalation Philosophy
-
-The system does not replace physicians.
-
-Escalation model (Policy A):
-- Intermediate risk → Human contact required
-- High risk → Immediate medical attention required
-- Low risk → Monitor and seek help if worsening
-
-The system is conservative by design.
-
----
-
-## 8. Explicit Non-Claims (Critical Safety Boundary)
-
-The system does NOT:
-
-- Provide medical diagnosis
-- Prescribe treatment
-- Replace professional medical judgment
-- Provide medication dosing instructions
-- Operate as an autonomous clinical authority
-
-It functions strictly as a risk detection and escalation assistant.
-
----
-
-## 9. Ethical and Regulatory Direction
-
-Although early development is research-oriented, the architecture is being designed with future certification in mind.
-
-Future alignment targets:
-- Software as a Medical Device (SaMD) principles
-- Traceability of decisions
-- Deterministic risk layers
-- Auditability and reproducibility
-
-Governance and regulatory documentation will precede any real-world patient testing.
-
----
-
-## 10. Development Philosophy
-
-The system is being developed incrementally:
-
-1. Deterministic baseline (current stage)
-2. Traceability layer (v0.2 implemented)
-3. Architecture separation (future)
-4. Validation framework
-5. Interface and device integration
-6. Supervised field evaluation
-7. Formal regulatory pathway
-
-Each phase must be internally coherent and auditable before progression.
+No real-world study, pilot, or deployment is authorized by this document.

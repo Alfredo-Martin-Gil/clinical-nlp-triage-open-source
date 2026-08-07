@@ -1,138 +1,70 @@
-# Quality Management System (QMS) – Overview v0.1
+# Governance and Documentation Scaffolding — v0.1
 
-## 1. Purpose
+## Status
 
-This document establishes the foundational Quality Management System (QMS) structure for this project.
+The files in `qms/` are draft governance templates for a research repository.
+They do **not** constitute an active, implemented, audited, or certified Quality
+Management System (QMS).
 
-The system is designed to be:
+Version control alone does not establish document control, approval authority,
+training, competence, supplier controls, CAPA, internal audit, management
+review, design controls, or conformity with ISO 13485 or another standard.
 
-- Compatible with ISO 13485 principles
-- Aligned with IMDRF SaMD guidance
-- Adaptable to ANMAT (Argentina) and Health Canada requirements
+## Purpose
 
-This version represents a pre-certification structural framework.
+The scaffolding is intended to demonstrate and test documentation habits such
+as:
 
----
+- linking proposed requirements, risks, implementation, tests, and changes;
+- recording version-specific limitations;
+- separating current evidence from future plans;
+- preventing undocumented expansion of clinical or regulatory claims;
+- making unresolved hazards and decisions visible.
 
-## 2. Scope
+## Current scope
 
-The QMS applies to:
+The documents may be used for internal research planning and portfolio review.
+They do not authorize software release, patient use, clinical research,
+regulatory submission, or claims of safety or effectiveness.
 
-- Software development
-- Risk management
-- Documentation control
-- Change management
-- Regulatory positioning
-- Safety architecture
+## Draft document set
 
-It covers all repository artifacts and development activities.
+- governance and documentation overview;
+- document-control template;
+- change-control template;
+- risk-management template;
+- software-lifecycle template;
+- exploratory regulatory considerations;
+- draft safety argument and evidence-gap register.
 
----
+These files are templates until roles, approval authority, processes, records,
+training, audit, and operational evidence are defined and demonstrated.
 
-## 3. Quality Policy
+## Repository governance rules
 
-The organization commits to:
+For research integrity, future changes should:
 
-- Safety-first design.
-- Explicit uncertainty handling.
-- Traceable decision logic.
-- Conservative risk posture.
-- Transparent limitation disclosure.
-- Continuous improvement.
+1. identify the repository version and change rationale;
+2. update affected limitations and evidence statements;
+3. link tests and evaluation artifacts where applicable;
+4. avoid claiming implementation of a control that exists only in a document;
+5. avoid claiming conformity with a standard without a formal assessment;
+6. record unresolved risks rather than treating documentation as mitigation.
 
-No feature shall be implemented without documented alignment with:
-- Context of use
-- Hazard model
-- Failure behavior contract
-- Uncertainty model
+These are proposed repository practices, not certified controls.
 
----
+## Standards and jurisdictions
 
-## 4. QMS Structure
+ISO 13485, ISO 14971, IEC 62304, IMDRF materials, ANMAT requirements, and Health
+Canada requirements may be examined as future reference sources. This
+scaffolding has not been assessed for completeness or conformity against them.
 
-The QMS is composed of the following controlled documents:
+Any future product-development or regulatory programme would require an
+appropriately resourced organization, accountable roles, qualified quality and
+regulatory input, controlled processes, and objective evidence.
 
-- Quality Management System Overview
-- Document Control Procedure
-- Change Control Procedure
-- Risk Management Procedure
-- Software Lifecycle Procedure
-- Regulatory Positioning Documentation
-- Clinical Safety Documentation
+## Activation boundary
 
-Each document must include:
-- Version identifier
-- Change history
-- Approval record (future phase)
-
----
-
-## 5. Document Control Principles
-
-All controlled documents must:
-
-- Have a clear version number.
-- Be stored in version control (Git).
-- Maintain traceable change history.
-- Be linked to related artifacts where applicable.
-
-No undocumented change to:
-- Risk logic
-- Escalation policy
-- Uncertainty thresholds
-- Regulatory claims
-
-is permitted.
-
----
-
-## 6. Risk Management Alignment
-
-Risk management activities shall align with:
-
-- ISO 14971 principles (structure-compatible)
-- Hazard identification
-- Risk analysis
-- Risk mitigation
-- Residual risk evaluation
-
-Risk documentation must link directly to implementation artifacts.
-
----
-
-## 7. Software Lifecycle Alignment
-
-Development lifecycle must include:
-
-- Requirement definition
-- Risk assessment
-- Design specification
-- Implementation
-- Verification (tests)
-- Documentation update
-
-No code change shall be merged without documentation alignment.
-
----
-
-## 8. Regulatory Evolution Strategy
-
-Phase 1:
-- Structured CDS assistive system
-- No autonomous authority
-
-Phase 2:
-- Expanded functionality under documented risk review
-
-Phase 3:
-- Formal regulatory submission preparation
-
----
-
-## 9. Development Constraint
-
-This QMS framework becomes active immediately.
-
-All future repository modifications must align with this structure.
-
-Deviation requires documented justification.
+This document does not activate a QMS. It activates only a documentation rule
+for this research repository: claims must remain version-specific, evidence-
+based, and explicit about limitations.
